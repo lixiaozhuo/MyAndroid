@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id = "@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorTop">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="20sp"
+            android:text="@string/login"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id = "@+id/layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="165dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/layout1"
+        android:background="@color/colorPanel"
+       >
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:hint="@string/phone"
+            android:lines="1" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/phone"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="10dp"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            android:lines="1"
+             />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:minWidth="100dp"
+            android:layout_height="40dp"
+            android:layout_alignRight="@id/password"
+            android:layout_below="@id/password"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorButton"
+            android:textSize="15sp"
+            android:textColor="@color/colorFont"
+            android:text="@string/login"
+            android:onClick="login"/>
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:minWidth="30dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_below="@id/password"
+            android:layout_alignLeft="@id/password"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:clickable="true"
+            android:onClick="register"
+            android:textSize="15sp"
+            android:textColor="@color/colorRegister"
+            android:text="@string/register"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id = "@+id/layout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="165dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/layout2"
+        android:background="@color/colorPanel">
+        <ImageView
+            android:id = "@+id/myImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="changerPhoto"
+            android:src ="@drawable/lion"
+            android:scaleType="center"/>
+    </RelativeLayout>
+</RelativeLayout>
