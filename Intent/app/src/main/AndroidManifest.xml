@@ -21,9 +21,9 @@
             android:name=".MainActivity3"
             android:label="隐式打开" >
             <intent-filter>
-                <action android:name="com.example.intent.ACTION_START" />
+                <action android:name="com.lixiaozhuo.intent.ACTION_START" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.example.intent.MY_CATEGORY" />
+                <category android:name="com.lixiaozhuo.intent.MY_CATEGORY" />
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity4"/>

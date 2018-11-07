@@ -1,5 +1,6 @@
 package com.lixiaozhuo.intent;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +14,8 @@ import android.widget.TextView;
 
 /**
  * 主活动
- * ref:http://www.jianshu.com/p/e65cb8d4e857
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     /**
      * 打电话
      */
@@ -57,19 +57,21 @@ public class MainActivity extends AppCompatActivity {
      */
     private Button ButtonOtherActivityReturn;
     /**
-     *
+     *显示打开Activity的返回值
      */
     private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //
+        //设置窗体全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //隐藏标题栏 (备注:AppCompatActivity下失效,改为Activity)
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        //获取控件
+        //获取显示控件
         textView = (TextView) findViewById(R.id.iReturn);
+
         //打电话
         ButtonCall = (Button) findViewById(R.id.iCall);
         ButtonCall.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         ButtonOtherActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity3.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
         });
@@ -147,8 +149,8 @@ public class MainActivity extends AppCompatActivity {
         ButtonOtherActivity1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("com.example.intent.ACTION_START");
-                intent.addCategory("com.example.intent.MY_CATEGORY");
+                Intent intent = new Intent("com.lixiaozhuo.intent.ACTION_START");
+                intent.addCategory("com.lixiaozhuo.intent.MY_CATEGORY");
                 startActivity(intent);
             }
         });
@@ -158,18 +160,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                //多参数
                 Bundle bundle = new Bundle();
                 bundle.putString("University", "HebeiUniversity");
                 bundle.putString("College", "Cyberspace Security & Computer");
                 intent.putExtras(bundle);
+                //单参数
+                //intent.putExtra("data", "网络空间安全与计算机学院");
                 intent.setClass(MainActivity.this, MainActivity4.class);
                 startActivity(intent);
-
-                //单个参数
-//                String s="网络空间安全与计算机学院";
-//                Intent intent = new Intent( MainActivity.this,FourthActivity.class);
-//                intent.putExtra("data", s);
-//                startActivity(intent);
             }
         });
         //带返回值打开另一个Activity

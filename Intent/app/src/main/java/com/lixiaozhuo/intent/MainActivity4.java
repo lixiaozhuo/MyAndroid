@@ -1,5 +1,6 @@
 package com.lixiaozhuo.intent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,14 +22,15 @@ public class MainActivity4 extends AppCompatActivity {
             //打开传过来的数据
             @Override
             public void onClick(View v) {
+                //接收多个参数
                 Bundle bundle = getIntent().getExtras();
                 String university = bundle.getString("University");
                 String college = bundle.getString("College");
                 textView.setText(university + ":" + college);
-
-//                Intent intent=getIntent();
-//                String string=intent.getStringExtra("data");
-//                textView.setText(string);
+                //接收单个参数
+                // Intent intent=getIntent();
+                //String string=intent.getStringExtra("data");
+                // textView.setText(string);
             }
         });
     }

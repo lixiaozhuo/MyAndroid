@@ -16,7 +16,9 @@ public class MainActivity5 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
         //获取控件
+        //打开获取参数按钮
         Button buttonGet = (Button) findViewById( R.id.getPara);
+        //关闭返回参数按钮
         Button buttonSend = (Button) findViewById( R.id.sendPara);
         final TextView textView = (TextView)findViewById(R.id.textPara) ;
         //打开传过来的数据
