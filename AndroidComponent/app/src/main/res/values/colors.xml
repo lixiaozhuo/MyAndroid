@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <!--登录界面配色-->
+    <color name="colorBackground">#FF4081</color>
+    <color name="colorPanel">#fff</color>
+    <color name="colorButton">#0bbaef</color>
+    <color name="colorTop">#0bbaef</color>
+    <color name="colorFont">#7e7d7d</color>
+    <color name="colorRegister">#7e7d7d</color>
+    <!--计算器配色-->
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTextView">#FFFFFF</color>
+    <color name="colorNumber">#FFFFFF</color>
+    <color name="colorSign">#EEEEEE</color>
+    <color name="colorResult">#04ccf9</color>
+</resources>

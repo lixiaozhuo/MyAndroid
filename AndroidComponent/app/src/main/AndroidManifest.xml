@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lixiaozhuo.androidcomponent">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--============================Calculator===============================================-->
+        <activity android:name=".calculator.CalculatorActivity"/>
+        <!--============================intent===============================================-->
+        <activity android:name=".intent.IntentActivity1"/>
+        <activity android:name=".intent.IntentActivity2"/>
+        <activity
+            android:name=".intent.IntentActivity3"
+            android:label="隐式打开" >
+            <intent-filter>
+                <action android:name="com.lixiaozhuo.androidcomponent.intent.ACTION_START" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.lixiaozhuo.androidcomponent.intent.MY_CATEGORY" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".intent.IntentActivity4"/>
+        <activity android:name=".intent.IntentActivity5"/>
+        <!--==============================Activity=============================================-->
+        <activity android:name=".activity.Activity1" />
+        <activity android:name=".activity.Activity2" />
+        <activity
+            android:name=".activity.Activity3"
+            android:theme="@android:style/Theme.Dialog" />
+        <!--=============================Service==============================================-->
+        <activity android:name=".service.ServiceActivity"/>
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.NativeMusicService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".service.RemoteMusicService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <!--=============================Broadcast==============================================-->
+        <activity android:name=".broadcast.BroadcastActivity" />
+        <receiver android:name=".broadcast.BroadcastReceiverLife">
+            <intent-filter >
+                <action android:name="com.lixiaozhuo.androidcomponent.broadcast.BroadcastLife"/>
+            </intent-filter>
+        </receiver>
+        <!--==============================ContentProvider=============================================-->
+        <activity android:name=".content_provider.ContentProviderActivity"/>
+        <!--provider-->
+        <activity android:name=".content_provider.provider.ContentProvider_ProviderActivity"/>
+        <!--user-->
+        <activity android:name=".content_provider.user.ContentProvider_UserActivity"/>
+        <!--system-book-->
+        <activity android:name=".content_provider.system_book.ContentProvider_SystemBookActivity"/>
+        <!--==========================View=================================================-->
+        <activity android:name=".view.ViewActivity"/>
+        <!-- Login-->
+        <activity android:name=".view.login.LoginActivity"/>
+        <!-- Menu-->
+        <activity android:name=".view.menu.MenuActivity"/>
+        <!-- Spinner-->
+        <activity android:name=".view.spinner.SpinnerActivity"/>
+        <!-- Toast-->
+        <activity android:name=".view.toast.ToastActivity"/>
+        <!-- Dialog-->
+        <activity android:name=".view.dialog.DialogActivity"/>
+        <activity android:name=".view.dialog.RadiobuttonActivity"/>
+        <!-- ListView-->
+        <activity android:name=".view.listview.ListViewActivity"/>
+        <!-- Notification-->
+        <activity android:name=".view.notification.NotificationActivity"/>
+        <activity android:name=".view.notification.Notification_ImageActivity"/>
+        <service android:name=".view.notification.Notification_MediaService"/>
+        <service android:name=".view.notification.Notification_DownloadService"/>
+        <activity android:name=".save_data.SaveDataActivity"/>
+        <!-- SharedPreferences-->
+        <activity android:name=".save_data.shared_preferences.SharedPreferencesActivity"/>
+        <!-- SQLite-->
+        <activity android:name=".save_data.sqlite.SQLiteActivity"/>
+        <activity android:name=".save_data.sqlite.SQLiteApplicationActivity"/>
+        <!--file-->
+        <activity android:name=".save_data.file.FileActivity"/>
+        <!--============================Network===============================================-->
+        <activity android:name=".network.Network"/>
+        <!--============================Thread===============================================-->
+        <activity android:name=".thread.MyThread"/>
+    </application>
+
+</manifest>

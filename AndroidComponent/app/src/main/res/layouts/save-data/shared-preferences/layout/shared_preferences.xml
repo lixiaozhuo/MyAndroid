@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User Name"
+        android:gravity="center"
+        />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:gravity="center"
+        />
+    <Button
+        android:id="@+id/saveData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存数据"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/getSaveData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="读取数据"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/clearData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="清空数据"
+        android:gravity="center"/>
+
+
+</LinearLayout> 

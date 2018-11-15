@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/startService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="启动服务"/>
+    <Button
+        android:id="@+id/stopService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="结束服务"/>
+    <Button
+        android:id="@+id/bindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定服务" />
+    <Button
+        android:id="@+id/unbindService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解绑服务" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="本地服务类型播放器"
+        />
+
+    <Button
+        android:id="@+id/playNativeService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="播放"/>
+
+    <Button
+        android:id="@+id/stopNativeService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="停止"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="远程服务类型播放器"
+        />
+    <SeekBar
+        android:id="@+id/seekBarRemoteService"
+        android:layout_width="750px"
+        android:layout_height="8dip"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="30dip"
+        android:minHeight="30dip"
+        android:maxHeight="30dip"
+        android:progressDrawable="@drawable/seekbar_bg"
+        android:thumb="@drawable/seekbar_thumb"
+        android:thumbOffset="0dip"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/playRemoteService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Play"/>
+</LinearLayout> 
