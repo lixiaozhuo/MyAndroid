@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.login;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.widget.Toast;
 
 import com.lixiaozhuo.androidcomponent.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
     private boolean flag = true;
 
     @Override

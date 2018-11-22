@@ -8,8 +8,7 @@
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type something here"
-        />
+        android:hint="请输入要把保存的数据" />
 
     <Button
         android:id="@+id/button"

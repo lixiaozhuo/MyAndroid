@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lixiaozhuo.androidcomponent">
-
+    <!--用户权限-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
+        android:name=".thread.app.ThreadCustomApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -32,6 +36,14 @@
         </activity>
         <activity android:name=".intent.IntentActivity4"/>
         <activity android:name=".intent.IntentActivity5"/>
+        <!--=============================Fragment==============================================-->
+        <activity android:name=".view.fragment.FragmentActivity"/>
+        <!--Fragment2_1-->
+        <activity android:name=".view.fragment.fragment1.Fragment1Activity"/>
+        <!--Fragment2_2-->
+        <activity android:name=".view.fragment.fragment2.Fragment2Activity"/>
+        <!--Fragment3-->
+        <activity android:name=".view.fragment.fragment3.Fragment3Activity"/>
         <!--==============================Activity=============================================-->
         <activity android:name=".activity.Activity1" />
         <activity android:name=".activity.Activity2" />
@@ -51,7 +63,7 @@
         <service
             android:name=".service.RemoteMusicService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
         <!--=============================Broadcast==============================================-->
         <activity android:name=".broadcast.BroadcastActivity" />
         <receiver android:name=".broadcast.BroadcastReceiverLife">
@@ -87,6 +99,22 @@
         <activity android:name=".view.notification.Notification_ImageActivity"/>
         <service android:name=".view.notification.Notification_MediaService"/>
         <service android:name=".view.notification.Notification_DownloadService"/>
+        <!--RecyclerView-->
+        <activity android:name=".view.recyclerview.RecyclerViewActivity"/>
+        <!--Tab-->
+        <activity android:name=".view.tab.TabActivity2"/>
+        <activity android:name=".view.tab.MyTabActivity"/>
+        <!--AppWidget-->
+        <receiver android:name=".view.appwidget.MyAppWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action  android:name="com.lixiaozhuo.androidcomponent.view.appwidget.preview"/>
+                <action  android:name="com.lixiaozhuo.androidcomponent.view.appwidget.next"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
+        <!--============================数据存储===============================================-->
         <activity android:name=".save_data.SaveDataActivity"/>
         <!-- SharedPreferences-->
         <activity android:name=".save_data.shared_preferences.SharedPreferencesActivity"/>
@@ -96,9 +124,36 @@
         <!--file-->
         <activity android:name=".save_data.file.FileActivity"/>
         <!--============================Network===============================================-->
-        <activity android:name=".network.Network"/>
+        <activity android:name=".network.NetworkActivity"/>
+        <!--网络连接-->
+        <activity android:name=".network.network_operate.NetworkOperatorActivity"/>
+        <!--数据解析-->
+        <activity android:name=".network.data_parser.DataParserActivity"/>
+        <activity android:name=".network.data_parser.json.JsonActivity"/>
+        <activity android:name=".network.data_parser.sax.SaxActivity"/>
+        <activity android:name=".network.data_parser.login.NetworkLoginActivity"/>
+        <!--JavaScript-->
+        <activity android:name=".network.javascript.JavaScriptActivity"/>
+        <activity android:name=".network.javascript.webview.WebViewActivity"/>
+        <activity android:name=".network.javascript.webview_javascript.WebViewJavaScriptActivity"/>
+        <activity android:name=".network.javascript.webview_javascript.WebViewJavaScriptOpenActivity"/>
         <!--============================Thread===============================================-->
-        <activity android:name=".thread.MyThread"/>
+        <activity android:name=".thread.ThreadActivity"/>
+        <!--Handler-->
+        <activity android:name=".thread.handler.HandlerActivity"/>
+        <activity android:name=".thread.handler.handler1.Handler1Activity"/>
+        <activity android:name=".thread.handler.handler2.Handler2Activity"/>
+        <activity android:name=".thread.handler.handler3.Handler3Activity"/>
+        <activity android:name=".thread.handler.handler_app.HandlerApplicationActivity"/>
+        <!--AsyncTask-->
+        <activity android:name=".thread.asynctask.AsyncTaskActivity"/>
+        <activity android:name=".thread.asynctask.asynctask1.AsyncTask1Activity"/>
+        <activity android:name=".thread.asynctask.asynctask2.AsyncTask2Activity"/>
+        <activity android:name=".thread.asynctask.asynctask_app.AsyncTaskApplicationActivity"/>
+        <!--线程通信-->
+        <activity android:name=".thread.communication.CommunicationActivity"/>
+        <!--应用-->
+        <activity android:name=".thread.app.ThreadApplicationActivity1"/>
+        <activity android:name=".thread.app.ThreadApplicationActivity2"/>
     </application>
-
 </manifest>

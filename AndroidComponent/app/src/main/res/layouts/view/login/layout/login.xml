@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorBackground"
+    android:background="#FF4081"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
         android:id = "@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorTop">
+        android:background="#0bbaef">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:textSize="20sp"
-            android:text="@string/login"/>
+            android:text="登录"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -28,8 +28,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/layout1"
-        android:background="@color/colorPanel"
-       >
+        android:background="#fff">
 
         <EditText
             android:id="@+id/phone"
@@ -39,7 +38,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
-            android:hint="@string/phone"
+            android:hint="手机号码"
             android:lines="1" />
 
         <EditText
@@ -51,7 +50,7 @@
             android:layout_marginRight="5dp"
             android:paddingLeft="10dp"
             android:inputType="textPassword"
-            android:hint="@string/password"
+            android:hint="密码"
             android:lines="1"
              />
 
@@ -65,10 +64,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"
-            android:background="@color/colorButton"
+            android:background="#0bbaef"
             android:textSize="15sp"
-            android:textColor="@color/colorFont"
-            android:text="@string/login"
+            android:textColor="#7e7d7d"
+            android:text="登录"
             android:onClick="login"/>
         <TextView
             android:id="@+id/register"
@@ -78,14 +77,14 @@
             android:gravity="center"
             android:layout_below="@id/password"
             android:layout_alignLeft="@id/password"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:clickable="true"
             android:onClick="register"
             android:textSize="15sp"
-            android:textColor="@color/colorRegister"
-            android:text="@string/register"/>
+            android:textColor="#7e7d7d"
+            android:text="注册"/>
     </RelativeLayout>
     <RelativeLayout
         android:id = "@+id/layout3"
@@ -96,7 +95,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_below="@id/layout2"
-        android:background="@color/colorPanel">
+        android:background="#fff">
         <ImageView
             android:id = "@+id/myImage"
             android:layout_width="wrap_content"

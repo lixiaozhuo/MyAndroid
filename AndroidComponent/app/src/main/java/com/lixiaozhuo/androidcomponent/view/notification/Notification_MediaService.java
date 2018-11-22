@@ -5,20 +5,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
 import android.graphics.BitmapFactory;
-import android.media.MediaDataSource;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.IBinder;
-import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
-import com.lixiaozhuo.androidcomponent.MainActivity;
 import com.lixiaozhuo.androidcomponent.R;
-
-import java.io.FileDescriptor;
-import java.io.IOException;
 
 /**
  * 播放器服务
@@ -124,7 +116,7 @@ public class Notification_MediaService extends Service {
         //不显示时间
         builder.setShowWhen(false);
         //远程视图
-        RemoteViews remoteViews = new RemoteViews(getPackageName(),R.layout.notification_custom);
+        RemoteViews remoteViews = new RemoteViews(getPackageName(),R.layout.notification_media);
         remoteViews.setTextViewText(R.id.title,"音乐播放器");
         remoteViews.setTextViewText(R.id.text,"歌曲"+index);
         //下一首命令

@@ -7,7 +7,22 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:onClick="myTest"/>
+        android:text="Handler"
+        android:onClick="handlerTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AsyncTask"
+        android:onClick="asyncTaskTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进程之间通信"
+        android:onClick="communicationTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="小应用"
+        android:onClick="applicationTest"/>
 
 </LinearLayout> 

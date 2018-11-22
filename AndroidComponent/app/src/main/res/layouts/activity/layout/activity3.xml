@@ -5,12 +5,11 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="我是：Activity3"
-        />
+        android:text="我是：Activity3" />
     <Button
+        android:id="@+id/button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="关闭"
-        android:onClick="close"
-        android:id="@+id/button"/>
+        android:onClick="close" />
 </LinearLayout>

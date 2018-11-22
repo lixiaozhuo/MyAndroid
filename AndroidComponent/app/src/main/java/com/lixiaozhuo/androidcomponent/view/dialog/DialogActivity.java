@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.dialog;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,7 +24,7 @@ import java.util.Calendar;
 /**
  * 对话框
  */
-public class DialogActivity extends AppCompatActivity {
+public class DialogActivity extends Activity {
     /**
      * 显示控件
      */

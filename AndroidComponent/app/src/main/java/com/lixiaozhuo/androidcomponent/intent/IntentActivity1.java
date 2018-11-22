@@ -65,10 +65,6 @@ public class IntentActivity1 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //设置窗体全屏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //隐藏标题栏 (备注:AppCompatActivity下失效,改为Activity)
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.intent1);
         //获取显示控件
         textView = findViewById(R.id.iReturn);

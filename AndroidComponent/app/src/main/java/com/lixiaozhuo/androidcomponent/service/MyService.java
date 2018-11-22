@@ -16,7 +16,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("MyService","onCreate");
+        Log.e("AndroidApplication","onCreate");
     }
     //////////////////////////////////bind//////////////////////////////////////////////////////////////////////////
     //下载Binder
@@ -27,33 +27,33 @@ public class MyService extends Service {
             Log.d("MyService", "开始下载！");
         }
         public int getProgress() {
-            Log.d("MyService", "获取进度！");
+            Log.e("AndroidApplication", "获取进度！");
             return 0;
         }
     }
     //服务绑定时调用
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d("MyService", "onBind");
+        Log.e("AndroidApplication", "onBind");
         return mBinder;
     }
     //服务解绑时调用
     @Override
     public boolean onUnbind(Intent intent) {
-        Log.d("MyService", "onUnbind");
+        Log.e("AndroidApplication", "onUnbind");
         return super.onUnbind(intent);
     }
     //服务再次绑定时调用
     @Override
     public void onRebind(Intent intent) {
-        Log.d("MyService", "onRebind");
+        Log.e("AndroidApplication", "onRebind");
         super.onRebind(intent);
     }
     //////////////////////////////////start//////////////////////////////////////////////////////////////////////////
     // 服务启动的时候调用
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("MyService","onStartCommand");
+        Log.e("AndroidApplication","onStartCommand");
         return super.onStartCommand(intent, flags, startId);
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,6 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d("MyService","onDestroy");
+        Log.e("AndroidApplication","onDestroy");
     }
 }

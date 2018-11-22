@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.save_data;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,7 @@ import com.lixiaozhuo.androidcomponent.view.toast.ToastActivity;
 /**
  * 数据存储主函数
  */
-public class SaveDataActivity extends AppCompatActivity {
+public class SaveDataActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

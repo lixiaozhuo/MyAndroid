@@ -50,7 +50,7 @@
         />
     <SeekBar
         android:id="@+id/seekBarRemoteService"
-        android:layout_width="750px"
+        android:layout_width="400dp"
         android:layout_height="8dip"
         android:layout_marginLeft="30dip"
         android:layout_marginRight="30dip"

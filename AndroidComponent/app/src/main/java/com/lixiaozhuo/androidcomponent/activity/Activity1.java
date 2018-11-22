@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +13,9 @@ import com.lixiaozhuo.androidcomponent.R;
 /**
  * 活动1
  */
-public class Activity1 extends AppCompatActivity {
+public class Activity1 extends Activity {
     //打印信息标志
-    private static final String TAG = "Activity1";
+    private static final String TAG = "AndroidApplication1";
 
     /**
      *只在活动第一次被创建时被调用
@@ -27,7 +28,7 @@ public class Activity1 extends AppCompatActivity {
         Log.e(TAG,"onCreate");
 
         //进入活动2
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.button2);
         button.setText("进入Activity2");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +38,7 @@ public class Activity1 extends AppCompatActivity {
             }
         });
         //进入活动3(对话框模式)
-        Button otherButton =findViewById(R.id.otherbutton);
+        Button otherButton =findViewById(R.id.button3);
         otherButton.setText("进入Activity3,以对话框形式");
         otherButton.setOnClickListener(new View.OnClickListener() {
             @Override

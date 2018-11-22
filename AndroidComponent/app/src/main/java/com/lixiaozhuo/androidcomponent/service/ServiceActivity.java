@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.service;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +19,7 @@ import com.lixiaozhuo.androidcomponent.R;
 /**
  * 服务
  */
-public class ServiceActivity extends AppCompatActivity implements View.OnClickListener {
+public class ServiceActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,8 +160,8 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
         //开始音乐服务
         startService(new Intent(this, RemoteMusicService.class));
         //获取控件并绑定事件
-        this.seekBarRemoteService = ( SeekBar )super.findViewById( R.id.seekBarRemoteService );
-        this.playRemoteService = ( Button )super.findViewById( R.id.playRemoteService );
+        this.seekBarRemoteService =super.findViewById( R.id.seekBarRemoteService );
+        this.playRemoteService = super.findViewById( R.id.playRemoteService );
         seekBarRemoteService.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,

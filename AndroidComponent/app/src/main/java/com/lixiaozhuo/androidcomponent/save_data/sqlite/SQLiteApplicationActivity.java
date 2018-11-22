@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class SQLiteApplicationActivity extends Activity {
     //帮助器对象
     private SQLiteApplicationHelper dbHelper;
-    //数据库对象
+    //数据库管理对象
     private SQLiteDatabase database;
     //显示数据控件
     private RecyclerView mRecyclerView;
@@ -59,16 +59,16 @@ public class SQLiteApplicationActivity extends Activity {
         //禁止软键盘打开界面时自动跳出
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         //获取控件并绑定事件
-        btnCreate = (Button) findViewById(R.id.db_create);
-        btnInit   = (Button) findViewById(R.id.db_init);
-        btnList   = (Button) findViewById(R.id.db_list);
-        btnInsert = (Button) findViewById(R.id.db_insert);
-        btnDelete = (Button) findViewById(R.id.db_delete);
-        btnUpdate = (Button) findViewById(R.id.db_update);
-        btnQuery  = (Button) findViewById(R.id.db_query);
-        editTextName = (EditText) findViewById(R.id.stu_name);
-        editTextID   = (EditText) findViewById(R.id.stu_no);
-        editTextAge  = (EditText) findViewById(R.id.stu_age);
+        btnCreate = findViewById(R.id.db_create);
+        btnInit = findViewById(R.id.db_init);
+        btnList = findViewById(R.id.db_list);
+        btnInsert = findViewById(R.id.db_insert);
+        btnDelete = findViewById(R.id.db_delete);
+        btnUpdate = findViewById(R.id.db_update);
+        btnQuery = findViewById(R.id.db_query);
+        editTextName = findViewById(R.id.stu_name);
+        editTextID = findViewById(R.id.stu_no);
+        editTextAge = findViewById(R.id.stu_age);
         //取消编辑控件闪烁效果
         editTextID.setCursorVisible(false);
         editTextAge.setCursorVisible(false);
@@ -82,34 +82,34 @@ public class SQLiteApplicationActivity extends Activity {
         btnUpdate.setOnClickListener(listener);
         btnQuery.setOnClickListener(listener);
     }
+
     //监听器
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             //当前按钮
             Button button = (Button) view;
-            try{
+            try {
                 switch (button.getId()) {
                     //创建数据库
                     case R.id.db_create: {
-                        //创建帮助器对象
                         dbHelper = new SQLiteApplicationHelper(SQLiteApplicationActivity.this, "school.db", null, 3);
-                        //创建数据库对象
+                        //获取数据库管理对象
                         database = dbHelper.getWritableDatabase();
                         //关闭数据库
                         database.close();
-                        Toast.makeText(SQLiteApplicationActivity.this,"数据库已建立",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "数据库已建立", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     //初始化数据库
                     case R.id.db_init: {
-                        //获取数据库
+                        //获取数据库管理器
                         database = dbHelper.getWritableDatabase();
                         //初始化数据库
                         dbHelper.onInit(database);
                         //关闭数据库
                         database.close();
-                        Toast.makeText(SQLiteApplicationActivity.this,"新写入10条数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "新写入10条数据", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     //列出所有数据
@@ -118,66 +118,64 @@ public class SQLiteApplicationActivity extends Activity {
                         initDbData();
                         //初始化布局
                         initView();
-                        Toast.makeText(SQLiteApplicationActivity.this,"显示全部数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "显示全部数据", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     //根据id查询数据
-                    case R.id.db_query:{
+                    case R.id.db_query: {
                         //初始化RecyclerView
                         initLineData();
                         //初始化
                         initView();
-                        Toast.makeText(SQLiteApplicationActivity.this,"查询当前学号学生",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "查询当前学号学生", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     //插入数据
-                    case R.id.db_insert:{
-                        //获取数据库
+                    case R.id.db_insert: {
+                        //获取数据库管理器
                         database = dbHelper.getWritableDatabase();
                         //获取数据
                         int InsertId = Integer.parseInt(editTextID.getText().toString());
                         String InsertName = editTextName.getText().toString();
                         int InsertAge = Integer.parseInt(editTextAge.getText().toString());
                         // 插入数据
-                        dbHelper.onInsert(database,InsertId, InsertName,InsertAge);
+                        dbHelper.onInsert(database, InsertId, InsertName, InsertAge);
                         //关闭数据库
                         database.close();
-                        Toast.makeText(SQLiteApplicationActivity.this,"插入一条数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "插入一条数据", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     //删除数据
-                    case R.id.db_delete:{
-                        //获取数据库
+                    case R.id.db_delete: {
+                        //获取数据库管理器
                         database = dbHelper.getWritableDatabase();
                         int DeleteId = Integer.parseInt(editTextID.getText().toString());
                         // 删除数据
-                        dbHelper.onDelete(database,DeleteId);
+                        dbHelper.onDelete(database, DeleteId);
                         //关闭数据库
                         database.close();
-                        Toast.makeText(SQLiteApplicationActivity.this,"删除一条数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "删除一条数据", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     //更新数据
-                    case R.id.db_update:{
-                        //获取数据库
+                    case R.id.db_update: {
+                        //获取数据库管理器
                         database = dbHelper.getWritableDatabase();
                         //获取数据
                         int UpdateId = Integer.parseInt(editTextID.getText().toString());
                         String UpdateName = editTextName.getText().toString();
                         int UpdateAge = Integer.parseInt(editTextAge.getText().toString());
-                        // 更细数据
-                        dbHelper.onUpdate(database,UpdateId, UpdateName,UpdateAge);
+                        // 更新数据
+                        dbHelper.onUpdate(database, UpdateId, UpdateName, UpdateAge);
                         //关闭数据库
                         database.close();
-                        Toast.makeText(SQLiteApplicationActivity.this,"更新一条数据",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SQLiteApplicationActivity.this, "更新一条数据", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     default:
                         break;
                 }
-            }
-            catch(Exception e)
-            {
+            } catch (Exception e) {
             }
         }
     };
@@ -191,24 +189,27 @@ public class SQLiteApplicationActivity extends Activity {
         //实例化数据适配器-数据源为全部数据
         mAdapter = new SQLiteApplicationAdapter(getStudentList());
     }
+
     /**
      * 获取全部数据
+     *
      * @return
      */
     public ArrayList<SQLiteApplicationStudent> getStudentList() {
         //创建帮助器对象
         dbHelper = new SQLiteApplicationHelper(SQLiteApplicationActivity.this, "school.db", null, 3);
-        //获取数据库
+        //获取数据库管理对象
         database = dbHelper.getWritableDatabase();
         //存储学生信息集合
         ArrayList<SQLiteApplicationStudent> studentList = new ArrayList<>();
         //游标记录数据集
-        Cursor cursor= dbHelper.onList(database);
+        Cursor cursor = dbHelper.onList(database);
         if (cursor.moveToFirst()) {
             do {
-                //获取学生信息
+                //存储学生信息
                 SQLiteApplicationStudent student = new SQLiteApplicationStudent();
-                student.student_ID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_ID)) );
+                //获取学生信息并存储
+                student.student_ID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_ID)));
                 student.name = cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_name));
                 student.age = Integer.parseInt(cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_age)));
                 //加入学生信息集合
@@ -234,25 +235,27 @@ public class SQLiteApplicationActivity extends Activity {
     }
 
     /**
-     *获取查询结果
+     * 获取查询结果
+     *
      * @return
      */
-    public ArrayList<SQLiteApplicationStudent>  getStudentLine() {
+    public ArrayList<SQLiteApplicationStudent> getStudentLine() {
         //创建帮助器对象
         dbHelper = new SQLiteApplicationHelper(SQLiteApplicationActivity.this, "school.db", null, 3);
-        //获取数据库
+        //获取数据库管理对象
         database = dbHelper.getWritableDatabase();
         //存储学生信息集合
         ArrayList<SQLiteApplicationStudent> studentLine = new ArrayList<>();
         //学生id
         int QueryId = Integer.parseInt(editTextID.getText().toString());
         //游标记录数据集
-        Cursor cursor = dbHelper.onQuery(database,QueryId);
+        Cursor cursor = dbHelper.onQuery(database, QueryId);
         if (cursor.moveToFirst()) {
             do {
-                //获取学生信息
+                //存储学生信息
                 SQLiteApplicationStudent student = new SQLiteApplicationStudent();
-                student.student_ID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_ID)) );
+                //获取学生信息并存储
+                student.student_ID = Integer.parseInt(cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_ID)));
                 student.name = cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_name));
                 student.age = Integer.parseInt(cursor.getString(cursor.getColumnIndex(SQLiteApplicationStudent.KEY_age)));
                 //加入学生信息集合
@@ -271,14 +274,12 @@ public class SQLiteApplicationActivity extends Activity {
      */
     private void initView() {
         //获取控件
-        mRecyclerView =findViewById(R.id.my_recycler_view);
+        mRecyclerView = findViewById(R.id.my_recycler_view);
         //设置布局管理器
         mRecyclerView.setLayoutManager(mLayoutManager);
         // 设置数据适配器
         mRecyclerView.setAdapter(mAdapter);
     }
-
-
 
 
 }

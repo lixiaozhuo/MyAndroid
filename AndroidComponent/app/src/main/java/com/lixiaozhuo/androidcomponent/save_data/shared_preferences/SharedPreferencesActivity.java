@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.save_data.shared_preferences;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,18 +13,17 @@ import com.lixiaozhuo.androidcomponent.MainActivity;
 import com.lixiaozhuo.androidcomponent.R;
 
 //数据存储方式1:SharedPreferences
-public class SharedPreferencesActivity extends AppCompatActivity {
+public class SharedPreferencesActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shared_preferences);
         //获取控件并绑定事件
-        Button saveData = findViewById(R.id.saveData);
-        Button getSaveData = findViewById(R.id.getSaveData);
-        Button clearData = findViewById(R.id.clearData);
         final EditText userName = findViewById(R.id.userName);
         final EditText password = findViewById(R.id.password);
+        //保存数据
+        Button saveData = findViewById(R.id.saveData);
         saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,8 +33,11 @@ public class SharedPreferencesActivity extends AppCompatActivity {
                 editor.putString("password",password.getText().toString());
                 //提交数据
                 editor.commit();
+                Toast.makeText(SharedPreferencesActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
             }
         });
+        //获取文件中数据
+        Button getSaveData = findViewById(R.id.getSaveData);
         getSaveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,7 +49,8 @@ public class SharedPreferencesActivity extends AppCompatActivity {
                 Toast.makeText(SharedPreferencesActivity.this,"UserName:"+name+"\nPassWord:"+password,Toast.LENGTH_LONG).show();
             }
         });
-
+        //清空数据
+        Button clearData = findViewById(R.id.clearData);
         clearData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +59,7 @@ public class SharedPreferencesActivity extends AppCompatActivity {
                 editor.clear();
                 //提交操作
                 editor.commit();
+                Toast.makeText(SharedPreferencesActivity.this, "清空成功", Toast.LENGTH_SHORT).show();
             }
         });
 

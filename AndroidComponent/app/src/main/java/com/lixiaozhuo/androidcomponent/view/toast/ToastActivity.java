@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.toast;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -15,7 +16,7 @@ import java.util.TimerTask;
 /**
  * Toast
  */
-public class ToastActivity extends AppCompatActivity {
+public class ToastActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

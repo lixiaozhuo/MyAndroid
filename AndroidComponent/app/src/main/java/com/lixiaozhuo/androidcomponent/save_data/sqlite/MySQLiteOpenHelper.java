@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- *自定义帮助器
+ *自定义帮助器(管理数据库的创建和版本的管理)
  */
 public class MySQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
     /**
@@ -22,14 +22,14 @@ public class MySQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper
     //创建数据库
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("MainActivity", "数据库创建成功");
-        //创建一个学生表
-        db.execSQL("create table student(_id integer primary key autoincrement, name char(10), age integer, sno integer, cpp float, math float, english float)");
+        Log.e("AndroidApplication", "数据库创建成功");
+        //新建学生表
+        db.execSQL("CREATE TABLE student(_id INTEGER PRIMARY KEY AUTOINCREMENT, name CHAR(10), age INTEGER, sno INTEGER, cpp FLOAT, math FLOAT, english FLOAT)");
     }
 
     //升级数据库
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d("MainActivity", "数据库升级成功");
+        Log.e("AndroidApplication", "数据库升级成功");
     }
 }

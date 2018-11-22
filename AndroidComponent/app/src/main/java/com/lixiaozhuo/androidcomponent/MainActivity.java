@@ -1,6 +1,6 @@
 package com.lixiaozhuo.androidcomponent;
 
-import android.content.ContentProvider;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,17 +11,17 @@ import com.lixiaozhuo.androidcomponent.broadcast.BroadcastActivity;
 import com.lixiaozhuo.androidcomponent.calculator.CalculatorActivity;
 import com.lixiaozhuo.androidcomponent.content_provider.ContentProviderActivity;
 import com.lixiaozhuo.androidcomponent.intent.IntentActivity1;
-import com.lixiaozhuo.androidcomponent.network.Network;
+import com.lixiaozhuo.androidcomponent.network.NetworkActivity;
 
 import com.lixiaozhuo.androidcomponent.save_data.SaveDataActivity;
 import com.lixiaozhuo.androidcomponent.service.ServiceActivity;
-import com.lixiaozhuo.androidcomponent.thread.MyThread;
+import com.lixiaozhuo.androidcomponent.thread.ThreadActivity;
 import com.lixiaozhuo.androidcomponent.view.ViewActivity;
 
 /**
  * 主函数
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void networkTest(View v){
-        Intent intent = new Intent(MainActivity.this, Network.class);
+        Intent intent = new Intent(MainActivity.this, NetworkActivity.class);
         startActivity(intent);
     }
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void threadTest(View v){
-        Intent intent = new Intent(MainActivity.this, MyThread.class);
+        Intent intent = new Intent(MainActivity.this, ThreadActivity.class);
         startActivity(intent);
     }
 

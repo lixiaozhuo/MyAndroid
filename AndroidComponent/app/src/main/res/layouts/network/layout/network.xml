@@ -7,6 +7,16 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:onClick="myTest"/>
+        android:text="网络连接"
+        android:onClick="httpTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="数据解析(SAX和JSON)"
+        android:onClick="dataParserTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JS"
+        android:onClick="jsTest"/>
 </LinearLayout> 

@@ -6,10 +6,9 @@
     android:orientation="vertical">
 
     <Button
-        android:text="第二个Activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:text="第二个Activity"/>
 
 
 </LinearLayout> 

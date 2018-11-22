@@ -39,7 +39,21 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="RecyclerView-列表"
+        android:onClick="recyclerViewTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Notification-通知"
         android:onClick="notificationTest"/>
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tab"
+        android:onClick="tabTest"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment"
+        android:onClick="fragmentTest"/>
 </LinearLayout> 

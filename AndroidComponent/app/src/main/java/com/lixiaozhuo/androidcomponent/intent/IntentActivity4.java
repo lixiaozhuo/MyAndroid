@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.intent;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +12,7 @@ import com.lixiaozhuo.androidcomponent.R;
 /**
  * 活动4
  */
-public class IntentActivity4 extends AppCompatActivity {
+public class IntentActivity4 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

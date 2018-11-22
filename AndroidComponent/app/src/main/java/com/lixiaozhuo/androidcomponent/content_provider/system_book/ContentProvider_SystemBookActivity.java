@@ -1,6 +1,7 @@
 package com.lixiaozhuo.androidcomponent.content_provider.system_book;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * 读取系统手机本
  */
-public class ContentProvider_SystemBookActivity extends AppCompatActivity {
+public class ContentProvider_SystemBookActivity extends Activity {
     //数组适配器
     ArrayAdapter<String> adapter;
     //存放读取的数据

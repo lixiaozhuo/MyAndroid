@@ -5,28 +5,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <Button
-        android:text="第五个Activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:text="第五个Activity"/>
     <Button
-        android:id="@+id/getPara"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="打开传过来的数据"
-        />
+        android:id="@+id/getPara"/>
     <TextView
         android:id="@+id/textPara"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="waiting ......"
-        />
+        android:text="waiting ......" />
     <Button
         android:id="@+id/sendPara"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="关闭并返回数据"
-        />
+        android:text="关闭并返回数据" />
 
 
 </LinearLayout> 

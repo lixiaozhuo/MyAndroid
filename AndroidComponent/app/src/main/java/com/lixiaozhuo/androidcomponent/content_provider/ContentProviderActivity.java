@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.content_provider;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,7 @@ import com.lixiaozhuo.androidcomponent.save_data.sqlite.SQLiteActivity;
 /**
  * 数据提供者
  */
-public class ContentProviderActivity extends AppCompatActivity {
+public class ContentProviderActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

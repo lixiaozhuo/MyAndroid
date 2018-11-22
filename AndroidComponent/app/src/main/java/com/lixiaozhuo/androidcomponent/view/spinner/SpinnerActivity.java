@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.spinner;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,7 @@ import java.util.List;
 /**
  * 下拉菜单
  */
-public class SpinnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener{
     /**
      * 显示控件
      */

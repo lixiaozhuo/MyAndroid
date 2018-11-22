@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <Button
+        android:id="@+id/button0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="直接显示"
+        android:onClick="loadUrl"/>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button0"
+        android:text="中文显示"
+        android:onClick="loadData" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button1"
+        android:text="本地网页"
+        android:onClick="loadLocal" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button2"
+        android:text="图文混排"
+        android:onClick="loadImage" />
+
+
+    <!--开始加载提示-->
+    <TextView
+        android:id="@+id/text_beginLoading"
+        android:layout_below="@+id/button0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--获取加载进度-->
+    <TextView
+        android:id="@+id/text_Loading"
+        android:layout_below="@+id/text_beginLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--结束加载提示-->
+    <TextView
+        android:id="@+id/text_endLoading"
+        android:layout_below="@+id/text_Loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- 获取网站的标题-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_endLoading" />
+    <!--显示网页区域-->
+    <WebView
+        android:id="@+id/webView1"
+        android:layout_below="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp" />
+
+
+</RelativeLayout>

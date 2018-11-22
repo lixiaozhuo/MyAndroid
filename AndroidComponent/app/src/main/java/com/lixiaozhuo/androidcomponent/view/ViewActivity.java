@@ -1,23 +1,27 @@
 package com.lixiaozhuo.androidcomponent.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lixiaozhuo.androidcomponent.R;
+import com.lixiaozhuo.androidcomponent.view.fragment.FragmentActivity;
 import com.lixiaozhuo.androidcomponent.view.dialog.DialogActivity;
 import com.lixiaozhuo.androidcomponent.view.listview.ListViewActivity;
 import com.lixiaozhuo.androidcomponent.view.login.LoginActivity;
 import com.lixiaozhuo.androidcomponent.view.menu.MenuActivity;
 import com.lixiaozhuo.androidcomponent.view.notification.NotificationActivity;
+import com.lixiaozhuo.androidcomponent.view.recyclerview.RecyclerViewActivity;
 import com.lixiaozhuo.androidcomponent.view.spinner.SpinnerActivity;
+import com.lixiaozhuo.androidcomponent.view.tab.MyTabActivity;
+import com.lixiaozhuo.androidcomponent.view.tab.TabActivity2;
 import com.lixiaozhuo.androidcomponent.view.toast.ToastActivity;
 
 /**
  * 控件主函数
  */
-public class ViewActivity extends AppCompatActivity {
+public class ViewActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +84,37 @@ public class ViewActivity extends AppCompatActivity {
     }
 
     /**
+     * 列表
+     * @param v
+     */
+    public void recyclerViewTest(View v){
+        Intent intent = new Intent(ViewActivity.this, RecyclerViewActivity.class);
+        startActivity(intent);
+    }
+
+    /**
      * 通知
      * @param v
      */
     public void notificationTest(View v){
         Intent intent = new Intent(ViewActivity.this, NotificationActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * Tab
+     * @param v
+     */
+    public void tabTest(View v){
+        Intent intent = new Intent(ViewActivity.this, MyTabActivity.class);
+        startActivity(intent);
+    }
+    /**
+     * Fragment
+     * @param v
+     */
+    public void fragmentTest(View v){
+        Intent intent = new Intent(ViewActivity.this, FragmentActivity.class);
         startActivity(intent);
     }
 

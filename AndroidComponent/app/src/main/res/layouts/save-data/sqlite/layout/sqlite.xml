@@ -16,35 +16,35 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="Insert"
+        android:onClick="insert"
         android:text="插入数据"
         android:textSize="30sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="Delete"
+        android:onClick="delete"
         android:text="删除数据"
         android:textSize="30sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="Update"
+        android:onClick="update"
         android:text="更新数据"
         android:textSize="30sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="Clear"
+        android:onClick="clear"
         android:text="清除数据"
         android:textSize="30sp" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="Select"
+        android:onClick="select"
         android:text="查找数据"
         android:textSize="30sp" />
 

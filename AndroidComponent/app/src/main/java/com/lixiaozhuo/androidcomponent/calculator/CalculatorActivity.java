@@ -1,8 +1,10 @@
 package com.lixiaozhuo.androidcomponent.calculator;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -10,7 +12,7 @@ import com.lixiaozhuo.androidcomponent.R;
 import com.lixiaozhuo.androidcomponent.calculator.utils.CalcUtil;
 import com.lixiaozhuo.androidcomponent.calculator.utils.OperatorUtil;
 
-public class CalculatorActivity extends AppCompatActivity implements View.OnClickListener {
+public class CalculatorActivity extends Activity implements View.OnClickListener {
     private Button btn0;
     private Button btn1;
     private Button btn2;
@@ -107,6 +109,8 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置窗体全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.calculator);
         //初始化视图
         initView();

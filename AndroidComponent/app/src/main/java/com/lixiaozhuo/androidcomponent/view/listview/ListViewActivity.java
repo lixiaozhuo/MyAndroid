@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.listview;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +21,7 @@ import java.util.Map;
 /**
  * 列表
  */
-public class ListViewActivity extends AppCompatActivity {
+public class ListViewActivity extends Activity {
     /**
      * 自定义适配器数据源
      */

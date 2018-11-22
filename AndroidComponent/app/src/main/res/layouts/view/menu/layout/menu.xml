@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:text="上下文菜单:请“长按”我~\n选项菜单:请点击右上角。"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
 </LinearLayout>

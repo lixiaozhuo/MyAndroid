@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.notification;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -21,7 +22,7 @@ import com.lixiaozhuo.androidcomponent.R;
 /**
  * 通知
  */
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationActivity extends Activity {
     /**
      * 普通通知
      */

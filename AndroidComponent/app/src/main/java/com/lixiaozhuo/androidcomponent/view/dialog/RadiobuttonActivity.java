@@ -1,5 +1,6 @@
 package com.lixiaozhuo.androidcomponent.view.dialog;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import com.lixiaozhuo.androidcomponent.R;
 /**
  * Activity跳转
  */
-public class RadiobuttonActivity extends AppCompatActivity {
+public class RadiobuttonActivity extends Activity {
     /**
      * 显示信息
      */

@@ -40,7 +40,7 @@ public class BroadcastActivity extends Activity {
                 //指定广播接受者的包名(发送显式广播)
                 intent.setPackage(getPackageName());
                 sendBroadcast(intent);
-                Log.e("BroadcastReceiver","sendBroadcast");
+                Log.e("AndroidApplication","sendBroadcast");
             }
         });
     }
@@ -62,7 +62,7 @@ public class BroadcastActivity extends Activity {
         // 注册广播接收者java代码
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         batteryReceiver = new BatteryReceiver();
-        // 注册r广播接收器
+        // 注册广播接收器
         registerReceiver(batteryReceiver, intentFilter);
     }
     /**

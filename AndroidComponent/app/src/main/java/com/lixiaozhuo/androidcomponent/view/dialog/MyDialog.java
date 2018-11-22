@@ -37,7 +37,7 @@ public class MyDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState){ //Bundle savedInstanceState
         super.onCreate(savedInstanceState);
         //退出按钮
-        Button mConfirm= (Button) findViewById(R.id.button);
+        Button mConfirm=  findViewById(R.id.button);
         mConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

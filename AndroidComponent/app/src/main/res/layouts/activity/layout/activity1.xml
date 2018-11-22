@@ -8,22 +8,20 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="我是 ：Activity1"
-        />
+        android:text="我是:Activity1" />
     <Button
+        android:id="@+id/button2"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"/>
+        android:layout_height="wrap_content" />
     <Button
+        android:id="@+id/button3"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/otherbutton"/>
+        android:layout_height="wrap_content" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="在Android Studio 的 LogCat 中观察 ：
-        onStart，onCreate等函数的变化，加深理解Activity生命周期。"
-        />
+        onStart，onCreate等函数的变化，加深理解Activity生命周期。" />
 
     <ImageView
         android:id="@+id/imageView"
