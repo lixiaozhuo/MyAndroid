@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_setting"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!--人物选择-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+        <!--人物图像-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:src="@mipmap/men1" />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:src="@mipmap/men2" />
+        </LinearLayout>
+        <!--单选按钮组-->
+        <RadioGroup
+            android:id="@+id/group_Men"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/radioMen1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:checked="true"
+                android:text="人物1"
+                android:textColor="#000" />
+
+            <RadioButton
+                android:id="@+id/radioMen2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:text="人物2"
+                android:textColor="#000" />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <!--难度选择-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="难度选择"
+            android:textColor="#000"
+            android:textSize="30sp"/>
+
+        <RelativeLayout
+            android:id="@+id/levelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/radioLevel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="5dp"
+                android:checked="true"
+                android:text="级别1"
+                android:textColor="#000" />
+
+            <RadioButton
+                android:id="@+id/radioLevel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="5dp"
+                android:text="级别2"
+                android:textColor="#000" />
+
+            <RadioButton
+                android:id="@+id/radioLevel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioLevel1"
+                android:layout_alignStart="@+id/radioLevel1"
+                android:layout_marginTop="10dp"
+                android:text="级别3"
+                android:textColor="#000" />
+
+            <RadioButton
+                android:id="@+id/radioLevel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/radioLevel2"
+                android:layout_alignStart="@+id/radioLevel2"
+                android:layout_marginTop="10dp"
+                android:text="级别4"
+                android:textColor="#000" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--底部按钮-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+        <ImageButton
+            android:id="@+id/btn_Save"
+            android:layout_width="105dp"
+            android:layout_height="49dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/button_save"
+            android:background="#0fff"/>
+        <ImageButton
+            android:id="@+id/btn_Back"
+            android:layout_width="105dp"
+            android:layout_height="49dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/button_back"
+            android:background="#0fff"/>
+    </RelativeLayout>
+
+</LinearLayout>
