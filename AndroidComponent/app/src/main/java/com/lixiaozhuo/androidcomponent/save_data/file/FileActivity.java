@@ -42,13 +42,6 @@ public class FileActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //关闭时，保存文件内容
-        save(edit.getText().toString());
-    }
-
     /**
      * 保存文件
      * @param view

@@ -22,27 +22,31 @@ import com.lixiaozhuo.game.domain.GameScore;
  * 游戏记录弹框
  */
 public class GameRecordDialog extends Dialog {
+    //上下文
+    private Context context;
 
     public GameRecordDialog(@NonNull Context context) {
         super(context,R.style.Theme_dialog);
         setContentView(R.layout.game_record);
+        this.context = context;
         //初始化游戏记录
         final GameRecord gameRecord = new GameRecord(context);
         //排行榜显示控件
         ListView listView = findViewById(R.id.list_view);
         //初始化数据适配器
-        final ArrayAdapter adapter = new ArrayAdapter<String>(getContext(), R.layout.custom_adapter);
+        final ArrayAdapter adapter = new ArrayAdapter<String>(context, R.layout.custom_adapter);
         //设置适配器
         listView.setAdapter(adapter);
         //将数据填入适配器
         for (GameScore gameScore : gameRecord.getData()) {
             adapter.add(String.format("%s      最高记录：%s ",gameScore.getLevelName(),gameScore.getDate()));
         }
-        //清除按钮
         findViewById(R.id.btn_DialogScore_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(getContext()).setTitle("提示").setMessage("你确认要删除所有记录吗？")
+                new AlertDialog.Builder(GameRecordDialog.this.context)
+                        .setTitle("提示")
+                        .setMessage("你确认要删除所有记录吗？")
                         .setPositiveButton("确定", new OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {

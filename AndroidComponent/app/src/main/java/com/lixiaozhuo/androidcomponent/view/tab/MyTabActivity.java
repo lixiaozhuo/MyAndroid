@@ -24,8 +24,8 @@ public class MyTabActivity extends TabActivity {
         tabHost.addTab(tabHost.newTabSpec("tab1")
                 .setIndicator("tab1")
                 .setContent(R.id.view1));
-        Intent intent = new Intent(this, TabActivity2.class);
         //添加意图tab
+        Intent intent = new Intent(this, TabActivity2.class);
         tabHost.addTab(tabHost.newTabSpec("tab2")
         		.setIndicator("tab2")
         		.setContent(intent));
