@@ -2,7 +2,11 @@ package com.lixiaozhuo.game.domain;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Log;
+
+import com.lixiaozhuo.game.dao.GameRecordSQLiteOpenHelper;
+import com.lixiaozhuo.game.domain.GameScore;
 
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -19,24 +23,16 @@ import java.util.Set;
 /**
  * 游戏记录
  */
-public class GameRecord{
+public class GameRecord {
     //应用上下文
     private Context context;
-    //游戏记录数据
-    private static Map<Integer, GameScore> data = new HashMap<>();
+    //数据库帮助器
+    private GameRecordSQLiteOpenHelper dbHelper;
 
     public GameRecord(Context context) {
         this.context = context;
-        //加载游戏记录数据
-        try {
-            //获取输入流
-            ObjectInputStream ois = new ObjectInputStream(context.openFileInput("RecordScore"));
-            //从文件中读取游戏记录数据
-            data = (Map<Integer, GameScore>) ois.readObject();
-            ois.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //初始化数据库帮助器
+        dbHelper = new GameRecordSQLiteOpenHelper(context);
     }
 
     /**
@@ -44,20 +40,8 @@ public class GameRecord{
      *
      * @return
      */
-    public List<GameScore> getData() {
-        //将记录数据转换为list格式
-        List<GameScore> list = new ArrayList<>();
-        for (int id : data.keySet()) {
-            list.add(data.get(id));
-        }
-        //对数据进行排序
-        list.sort(new Comparator<GameScore>() {
-            @Override
-            public int compare(GameScore o1, GameScore o2) {
-                return o1.getLevelName().compareTo(o2.getLevelName());
-            }
-        });
-        return list;
+    public List<GameScore> getRecord() {
+        return dbHelper.onList(dbHelper.getReadableDatabase());
     }
 
     /**
@@ -65,40 +49,14 @@ public class GameRecord{
      *
      * @param gameScore
      */
-    public void updateData(GameScore gameScore) {
-        //获取当前记录
-        GameScore currentGameScore = data.get(gameScore.getLevel());
-        //当前无记录或者记录被刷新
-        if (currentGameScore == null || currentGameScore.getScore() < gameScore.getScore()) {
-            //更新记录
-            data.put(gameScore.getLevel(), gameScore);
-        }
-        //保存更改
-        saveData();
+    public void updateRecord(GameScore gameScore) {
+        dbHelper.onUpdate(dbHelper.getWritableDatabase(),gameScore);
     }
 
     /**
      * 清空记录
      */
-    public void clearData() {
-        //清除数据
-        data.clear();
-        //保存更改
-        saveData();
-    }
-
-    /**
-     * 将数据保存到文件中
-     */
-    private void saveData() {
-        try {
-            //获取输出流
-            ObjectOutputStream oos = new ObjectOutputStream(context.openFileOutput("RecordScore", Context.MODE_PRIVATE));
-            //将数据写入文件
-            oos.writeObject(data);
-            oos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void clearRecord() {
+        dbHelper.onClear(dbHelper.getWritableDatabase());
     }
 }

@@ -2,13 +2,18 @@ package com.lixiaozhuo.game.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.thread.PedalThread;
@@ -26,8 +31,10 @@ public class PlayGame extends Activity {
         //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.play_game);
+        //注册电池广播接收器
+        registBroadcastReceiver();
         //初始化跳板线程
-        pedalThread = new PedalThread(this, (RelativeLayout)findViewById(R.id.playGame), getResources().getDisplayMetrics());
+        pedalThread = new PedalThread(this, (RelativeLayout) findViewById(R.id.playGame), getResources().getDisplayMetrics());
         //开始游戏
         pedalThread.start();
         //暂停按钮
@@ -64,7 +71,7 @@ public class PlayGame extends Activity {
             if (x - x2 > 50) {
                 //向左移动
                 pedalThread.moveGameMen(-10);
-            } else if (x2 - x >50) {
+            } else if (x2 - x > 50) {
                 //向右移动
                 pedalThread.moveGameMen(10);
             }
@@ -81,6 +88,7 @@ public class PlayGame extends Activity {
         this.pauseGame();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * 暂停游戏
      */
@@ -102,5 +110,32 @@ public class PlayGame extends Activity {
                         pedalThread.continueGame();
                     }
                 }).setCancelable(false).show();
+    }
+
+
+    //////////////////////////////////////广播接收器///////////////////////////////////////////////////////////
+    //注册广播接收器
+    private  void registBroadcastReceiver(){
+        // 注册电池状态接收器
+        registerReceiver(new BatteryReceiver(), new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+    }
+
+    /**
+     * 电池状态接收器
+     */
+    public class BatteryReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
+                //获取当前电量
+                int level = intent.getIntExtra("level", 0);
+                //提示电量不足
+                if (level < 15) {
+                    ((TextView)findViewById(R.id.showBattery)).setText("电量不足，请充电!");
+                }else{
+                    ((TextView)findViewById(R.id.showBattery)).setText("");
+                }
+            }
+        }
     }
 }

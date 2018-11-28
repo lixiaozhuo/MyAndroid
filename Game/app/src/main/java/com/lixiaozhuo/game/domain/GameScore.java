@@ -3,6 +3,7 @@ package com.lixiaozhuo.game.domain;
 import com.lixiaozhuo.game.activity.GameMenu;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 
 /**
  *游戏得分
@@ -12,16 +13,11 @@ public class GameScore implements Serializable{
     private int level;
     //时间(ms单位)
     private long score;
-    //时间(字符串)
-    private String date;
 
-
-    public GameScore(int level, long score, String date) {
+    public GameScore(int level, long score) {
         this.level = level;
         this.score = score;
-        this.date = date;
     }
-
     /**
      * 获取级别名称
      * @return
@@ -46,10 +42,6 @@ public class GameScore implements Serializable{
     }
 
     public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+        return new SimpleDateFormat("mm" + "分" + "ss" + "秒").format(score);
     }
 }

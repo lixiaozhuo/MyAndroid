@@ -2,12 +2,15 @@ package com.lixiaozhuo.game.thread;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.media.MediaPlayer;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.util.DisplayMetrics;
 import android.widget.RelativeLayout;
@@ -19,6 +22,7 @@ import com.lixiaozhuo.game.domain.GamePedal;
 import com.lixiaozhuo.game.domain.GameRecord;
 import com.lixiaozhuo.game.domain.GameScore;
 import com.lixiaozhuo.game.domain.GameSetting;
+import com.lixiaozhuo.game.service.MusicService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,8 +56,6 @@ public class PedalThread extends Thread {
     private RelativeLayout layout;
     //屏幕属性
     private DisplayMetrics displayMetrics;
-    //音乐播放器
-    private MediaPlayer mediaPlayer;
     //游戏设置
     private GameSetting gameSetting;
     ///////////////////////////////////游戏属性////////////////////////////////////////////////
@@ -76,19 +78,8 @@ public class PedalThread extends Thread {
         this.layout = layout;
         //屏幕属性
         this.displayMetrics = displayMetrics;
-        //初始化音乐播放器
-        initMediaPlay();
         //获取游戏设置
         initGameSetting();
-    }
-
-    //初始化音乐播放器
-    private void initMediaPlay() {
-        //开始游戏音乐
-        mediaPlayer = MediaPlayer.create(context, R.raw.game_music);
-        //设置音乐循环播放
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
     }
 
     //获取游戏设置
@@ -99,23 +90,27 @@ public class PedalThread extends Thread {
                 Integer.valueOf(preferences.getString("levelNO", String.valueOf(R.id.radioLevel1))));
     }
 
-    /**
-     * 获取人物
-     *
-     * @return
-     */
-    public GameMen getGameMen() {
-        return gameMen;
-    }
     ///////////////////////////////////////控制游戏/////////////////////////////////////////////////////////////////
+    //音乐服务连接
+    private ServiceConnection musicServiceConnection = new ServiceConnection() {
+        //活动与服务连接断开时调用
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+        }
+        //活动与服务成功绑定时调用
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+        }
+    };
+
     /**
      * 开始游戏
      */
     private void startGame() {
         //设置游戏状态为游戏中
         gameState = GameState.Running;
-        //开启音乐播放器
-        mediaPlayer.start();
+        //开启音乐服务
+        context.bindService(new Intent(context, MusicService.class), musicServiceConnection, Context.BIND_AUTO_CREATE);
         //清空计时
         time = 0;
         //初始化界面
@@ -146,6 +141,7 @@ public class PedalThread extends Thread {
         layout.addView(gameMen.getMenImage());
     }
     //////////////////////////////////////公共函数/////////////////////////////////////////////////////////////////////
+
     /**
      * 控制人物移动
      */
@@ -164,7 +160,7 @@ public class PedalThread extends Thread {
         //设置游戏状态为暂停状态
         gameState = GameState.Pause;
         //暂停音乐播放器
-        mediaPlayer.pause();
+        context.unbindService(musicServiceConnection);
     }
 
     /**
@@ -174,7 +170,7 @@ public class PedalThread extends Thread {
         //设置游戏状态为游戏中
         gameState = GameState.Running;
         //开启音乐播放器
-        mediaPlayer.start();
+        context.bindService(new Intent(context, MusicService.class), musicServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     /**
@@ -183,8 +179,6 @@ public class PedalThread extends Thread {
     public void stopGame() {
         //设置游戏状态为结束
         gameState = GameState.Stop;
-        //将音乐播放器回收
-        mediaPlayer.release();
         //关闭窗口
         ((Activity) context).finish();
     }
@@ -268,6 +262,7 @@ public class PedalThread extends Thread {
 
 
     /////////////////////////////私有函数//////////////////////////////////////////////////////
+
     /**
      * 添加踏板
      */
@@ -372,14 +367,13 @@ public class PedalThread extends Thread {
             //暂停游戏
             pauseGame();
             //获取成绩
-            final Date score = new Date(time);
-            final String date = new SimpleDateFormat("mm" + "分" + "ss" + "秒").format(score);
+           GameScore gameScore =  new GameScore(gameSetting.getLevelNO(), new Date(time).getTime());
             //更新成绩
-            new GameRecord(context).updateData(new GameScore(gameSetting.getLevelNO(), score.getTime(), date));
+            new GameRecord(context).updateRecord(gameScore);
             //提示结束
             new AlertDialog.Builder(context)
                     .setTitle("Game Over !")
-                    .setMessage("您的成绩为 : " + date)
+                    .setMessage("您的成绩为 : " + gameScore.getDate())
                     .setPositiveButton("返回主菜单", new DialogInterface.OnClickListener() { //返回主菜单的操作
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

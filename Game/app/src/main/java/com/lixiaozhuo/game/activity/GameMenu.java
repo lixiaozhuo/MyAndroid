@@ -13,8 +13,8 @@ import android.widget.ImageButton;
 
 
 import com.lixiaozhuo.game.R;
-import com.lixiaozhuo.game.view.GameSettingDialog;
-import com.lixiaozhuo.game.view.GameRecordDialog;
+import com.lixiaozhuo.game.custom_view.GameSettingDialog;
+import com.lixiaozhuo.game.custom_view.GameRecordDialog;
 
 import java.util.HashMap;
 
