@@ -74,7 +74,8 @@ public class RemoteMusicService extends Service {
          */
         @Override
         public boolean setLoop(boolean loop) throws RemoteException {
-            return false;
+            mediaPlayer.setLooping(loop);
+            return loop;
         }
 
         /**
