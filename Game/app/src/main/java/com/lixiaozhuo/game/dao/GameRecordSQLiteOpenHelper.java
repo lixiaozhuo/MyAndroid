@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.domain.GameScore;
@@ -43,38 +42,35 @@ public class GameRecordSQLiteOpenHelper extends SQLiteOpenHelper {
 
     /**
      * 更新数据
-     * @param db
      */
-    public  void  onUpdate(SQLiteDatabase db,GameScore gameScore){
-        Log.e("AndroidApplication",gameScore.getLevel()+":" + gameScore.getScore());
-        db.execSQL("UPDATE tb_game_record SET score="+gameScore.getScore()+
-                " WHERE level_id=" + gameScore.getLevel()+ " AND score<" + gameScore.getScore());
+    public  void  onUpdate(GameScore gameScore){
+        //更新记录
+        getWritableDatabase().execSQL("UPDATE tb_game_record SET score="+gameScore.getTime()+
+                " WHERE level_id=" + gameScore.getLevelNO()+ " AND score<" + gameScore.getTime());
     }
 
     /**
      * 清除数据
-     * @param db
      */
-    public  void  onClear(SQLiteDatabase db){
-        db.execSQL("UPDATE tb_game_record SET score=0");
+    public  void  onClear(){
+        //清空记录
+        getWritableDatabase().execSQL("UPDATE tb_game_record SET score=0");
     }
 
     /**
      * 查询数据
-     * @param db
      * @return
      */
-    public List<GameScore> onList(SQLiteDatabase db){
+    public List<GameScore> onList(){
         //存储的查询的数据
         List<GameScore> list = new ArrayList<>();
         //开始查询
-        Cursor cursor = db.rawQuery("SELECT  level_id,score FROM tb_game_record", null);
+        Cursor cursor = getReadableDatabase().rawQuery("SELECT  level_id,score FROM tb_game_record", null);
         //转换数据
         while(cursor.moveToNext()){
             //获得信息
             int levelId = cursor.getInt(cursor.getColumnIndex("level_id"));
             int score = cursor.getInt(cursor.getColumnIndex("score"));
-            Log.e("AndroidApplication",levelId+":"+score );
             if(score >0){
                 list.add(new GameScore(levelId,score));
             }

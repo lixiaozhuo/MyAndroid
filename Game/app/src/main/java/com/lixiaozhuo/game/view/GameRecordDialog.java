@@ -1,10 +1,10 @@
-package com.lixiaozhuo.game.custom_view;
+package com.lixiaozhuo.game.view;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.lixiaozhuo.game.R;
-import com.lixiaozhuo.game.domain.GameRecord;
 import com.lixiaozhuo.game.domain.GameScore;
+import com.lixiaozhuo.game.service.GameRecordService;
 
 /**
  * 游戏记录弹框
@@ -21,23 +21,24 @@ import com.lixiaozhuo.game.domain.GameScore;
 public class GameRecordDialog extends Dialog {
     //上下文
     private Context context;
+    //游戏记录业务
+    private GameRecordService gameRecordService;
+    //数据适配器
+    private ArrayAdapter adapter;
 
-    public GameRecordDialog(@NonNull Context context) {
+    public GameRecordDialog(Context context) {
         super(context,R.style.Theme_dialog);
         setContentView(R.layout.game_record);
         this.context = context;
-        //初始化游戏记录
-        final GameRecord gameRecord = new GameRecord(context);
-        //排行榜显示控件
-        ListView listView = findViewById(R.id.list_view);
+        gameRecordService = new GameRecordService(context);
+        //初始化界面
+        initView();
         //初始化数据适配器
-        final ArrayAdapter adapter = new ArrayAdapter<String>(context, R.layout.custom_adapter);
-        //设置适配器
-        listView.setAdapter(adapter);
-        //将数据填入适配器
-        for (GameScore gameScore : gameRecord.getRecord()) {
-            adapter.add(String.format("%s      最高记录：%s ",gameScore.getLevelName(),gameScore.getDate()));
-        }
+        adapter = new ArrayAdapter<String>(context, R.layout.game_record_adapter);
+        //初始化数据
+        initData();
+
+        //清除按钮
         findViewById(R.id.btn_DialogScore_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +52,7 @@ public class GameRecordDialog extends Dialog {
                                 adapter.clear();
                                 adapter.notifyDataSetChanged();
                                 //清空存储数据
-                                gameRecord.clearRecord();
+                                gameRecordService.clearRecord();
                             }
                         }).setNegativeButton("放弃", null).show();
             }
@@ -64,18 +65,29 @@ public class GameRecordDialog extends Dialog {
             }
         });
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public GameRecordDialog(Context context, int width, int height) {
-        this(context);
+    //初始化界面
+    private void initView() {
         //获取布局参数
         WindowManager.LayoutParams params = getWindow().getAttributes();
         //获取像素密度
         float density = context.getResources().getDisplayMetrics().density;
         //设置显示大小
-        params.width = (int) (width * density);
-        params.height = (int) (height * density);
+        params.width = (int) (300 * density);
+        params.height = (int) (500 * density);
         //设置居中显示
         params.gravity = Gravity.CENTER;
         getWindow().setAttributes(params);
+    }
+
+    //初始化数据
+    private void initData(){
+        //设置适配器
+        ((ListView)findViewById(R.id.list_view)).setAdapter(adapter);
+        //将数据添加到适配器中
+        for (GameScore gameScore : gameRecordService.getRecord()) {
+            adapter.add(String.format("%s      最高记录：%s ",gameScore.getLevelName(),gameScore.getScore()));
+        }
     }
 }

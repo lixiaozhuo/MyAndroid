@@ -1,7 +1,6 @@
 package com.lixiaozhuo.game.domain;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
 import com.lixiaozhuo.game.R;
@@ -13,13 +12,13 @@ public class GamePedal {
     //踏板长度
     private int length;
     //踏板位置
-    private int x,y;
+    private int x, y;
+    //踏板速度
+    private int speed;
     //踏板图像
     private ImageView pedalImage;
-    //踏板移动距离
-    private  int speed;
 
-    public GamePedal(int length, int x, int y,int speed, Context context) {
+    public GamePedal(int length, int x, int y, int speed, Context context) {
         this.length = length;
         this.x = x;
         this.y = y;
@@ -40,18 +39,8 @@ public class GamePedal {
         return length;
     }
 
-    public void setLength(int length) {
-        this.length = length;
-    }
-
     public int getX() {
         return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-        //根据踏板位置移动踏板
-        this.pedalImage.setX(x);
     }
 
     public int getY() {
@@ -64,22 +53,11 @@ public class GamePedal {
         this.pedalImage.setY(y);
     }
 
-    public ImageView getPedalImage() {
-        return pedalImage;
-    }
-
-    public void setPedalImage(ImageView pedalImage) {
-        this.pedalImage = pedalImage;
-        //更新踏板位置
-        this.x = (int)this.pedalImage.getX();
-        this.y = (int)this.pedalImage.getY();
-    }
-
     public int getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public ImageView getPedalImage() {
+        return pedalImage;
     }
 }

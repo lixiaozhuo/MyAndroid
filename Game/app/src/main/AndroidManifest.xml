@@ -9,15 +9,21 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.GameMenu">
+        <activity android:name=".view.GameMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PlayGame" />
-        <service android:name=".service.MusicService"/>
+        <activity android:name=".view.PlayGame" />
+
+        <service android:name=".components.NativeMusicService" />
+
+        <receiver
+            android:name=".components.BatteryBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>

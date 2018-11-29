@@ -30,7 +30,7 @@
             android:layout_marginTop="20dp"
             android:scaleType="fitCenter"
             android:src="@mipmap/button_clear"
-            android:background="#0fff"/>
+            android:background="#0fff" />
 
         <ImageButton
             android:id="@+id/btn_DialogScore_Back"
@@ -39,9 +39,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
-            android:background="#0fff"
             android:scaleType="fitCenter"
-            android:src="@mipmap/button_back" />
+            android:src="@mipmap/button_back"
+            android:background="#0fff" />
     </RelativeLayout>
 
 </LinearLayout>

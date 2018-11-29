@@ -10,21 +10,17 @@ public class GameSetting {
     private  int menNO;
     //级别编号
     private  int levelNO;
-    //踏板移动间隔
-    private int movePedalTime;
-    //踏板添加时间
+    //移动速度
+    private int moveSpeed;
+    //踏板添加间隔
     private int addPedalInterval;
 
 
-    public GameSetting(int menNO,int levelNO){
-        this.menNO =menNO;
-        this.levelNO = levelNO;
-        //更新踏板移动速度和踏板添加时间
-        updateTime();
-    }
-
     public GameSetting(){
-        this(R.id.radioMen1, R.id.radioLevel1);
+        this.menNO =R.id.radioMen1;
+        this.levelNO = R.id.radioLevel1;
+        //更新踏板移动速度和踏板添加时间
+        updateData();
     }
 
     public int getMenNO() {
@@ -42,35 +38,39 @@ public class GameSetting {
     public void setLevelNO(int levelNO) {
         this.levelNO = levelNO;
         //更新踏板移动速度和踏板添加时间
-        updateTime();
+        updateData();
     }
 
-    public int getMovePedalTime() {
-        return movePedalTime;
+    public int getPedalMoveSpeed() {
+        return moveSpeed;
+    }
+
+    public int getMenMoveSpeed(){
+        return moveSpeed * 2;
     }
 
     public int getAddPedalInterval() {
         return addPedalInterval;
     }
-
-    //更新踏板移动速度和踏板添加时间
-    private void updateTime(){
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //更新移动速度和踏板添加间隔
+    private void updateData(){
         switch (levelNO){
             case R.id.radioLevel1:
-                movePedalTime =6;
-                addPedalInterval =100;
-                break;
-            case R.id.radioLevel2:
-                movePedalTime =12;
+                moveSpeed =10;
                 addPedalInterval =60;
                 break;
-            case R.id.radioLevel3:
-                movePedalTime =18;
+            case R.id.radioLevel2:
+                moveSpeed =14;
                 addPedalInterval =50;
                 break;
-            case R.id.radioLevel4:
-                movePedalTime =24;
+            case R.id.radioLevel3:
+                moveSpeed =16;
                 addPedalInterval =40;
+                break;
+            case R.id.radioLevel4:
+                moveSpeed =18;
+                addPedalInterval =30;
                 break;
         }
     }

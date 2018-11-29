@@ -1,10 +1,10 @@
 package com.lixiaozhuo.game.domain;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.lixiaozhuo.game.activity.GameMenu;
 import com.lixiaozhuo.game.R;
 
 /**
@@ -14,12 +14,13 @@ public class GameMen {
     //人物编号
     private int menNO;
     //人物坐标
-    private int x = 0;
-    private int y = 0;
+    private int x,y;
+    //人物大小
+    private int width,height;
+    //人物移动速度
+    private int speed;
     //人物图像
     private ImageView menImage;
-    //人物速度
-    public  int speed;
 
     public GameMen(int menNO, int x, int y,int speed, Context context) {
         this.menNO = menNO;
@@ -33,39 +34,9 @@ public class GameMen {
         this.menImage.setScaleType(ImageView.ScaleType.FIT_XY);
         this.menImage.setX(x);
         this.menImage.setY(y);
-    }
-
-    //获取人物对应图片
-    private int getMenImageID() {
-        int imageId;
-        switch (menNO) {
-            case R.id.radioMen1:
-                imageId = R.mipmap.men1;
-                break;
-            case R.id.radioMen2:
-                imageId = R.mipmap.men2;
-                break;
-            default:
-                imageId = R.mipmap.men1;
-        }
-        return imageId;
-    }
-
-    /**
-     * 获取人物名称
-     *
-     * @return
-     */
-    public String getMenName() {
-        return GameMenu.gameMenMap.get(menNO);
-    }
-
-    public int getMenNO() {
-        return menNO;
-    }
-
-    public void setMenNO(int menNO) {
-        this.menNO = menNO;
+        //初始化人物大小属性
+        this.width = 100;
+        this.height = 150;
     }
 
     public int getX() {
@@ -88,23 +59,36 @@ public class GameMen {
         this.menImage.setY(y);
     }
 
-    public ImageView getMenImage() {
-        return menImage;
+    public int getWidth() {
+        return width;
     }
 
-    public void setMenImage(ImageView menImage) {
-        this.menImage = menImage;
-        //更新位置信息
-        this.x = (int)this.menImage.getX();
-        this.y = (int)this.menImage.getY();
+    public int getHeight() {
+        return height;
     }
 
-    public int getSpeed() {
+    public int getSpeed(){
         return speed;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public ImageView getMenImage(){
+        return menImage;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //获取人物对应图片
+    private int getMenImageID() {
+        int imageId;
+        switch (menNO) {
+            case R.id.radioMen1:
+                imageId = R.mipmap.men1;
+                break;
+            case R.id.radioMen2:
+                imageId = R.mipmap.men2;
+                break;
+            default:
+                imageId = R.mipmap.men1;
+        }
+        return imageId;
+    }
 }
