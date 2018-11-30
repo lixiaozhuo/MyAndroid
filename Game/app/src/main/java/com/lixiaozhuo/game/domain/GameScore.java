@@ -1,15 +1,14 @@
 package com.lixiaozhuo.game.domain;
 
 import com.lixiaozhuo.game.R;
-import com.lixiaozhuo.game.view.GameMenu;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 /**
- *游戏得分
+ * 游戏得分
  */
-public class GameScore implements Serializable{
+public class GameScore implements Serializable {
     //级别
     private int levelNO;
     //时间
@@ -26,7 +25,7 @@ public class GameScore implements Serializable{
 
     public String getLevelName() {
         String name = "";
-        switch(levelNO){
+        switch (levelNO) {
             case R.id.radioLevel1:
                 name = "级别1";
                 break;
@@ -39,6 +38,8 @@ public class GameScore implements Serializable{
             case R.id.radioLevel4:
                 name = "级别4";
                 break;
+            default:
+                name = "级别1";
         }
         return name;
     }

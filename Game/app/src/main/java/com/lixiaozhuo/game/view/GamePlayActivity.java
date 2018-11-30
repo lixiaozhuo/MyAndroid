@@ -23,9 +23,11 @@ import com.lixiaozhuo.game.thread.GameThread;
 /**
  * 开始游戏
  */
-public class PlayGame extends Activity {
+public class GamePlayActivity extends Activity {
     //踏板线程
     private GameThread gameThread;
+
+    private BatteryBroadcastReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class PlayGame extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.game_play);
         //初始化电池广播接收器
-        BatteryBroadcastReceiver broadcastReceiver = new BatteryBroadcastReceiver();
+        broadcastReceiver = new BatteryBroadcastReceiver();
         //注册电池广播接收器
         registerReceiver(broadcastReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         broadcastReceiver.SetUpdateUIListener(new UpdateUIListener() {
@@ -100,4 +102,10 @@ public class PlayGame extends Activity {
         return true;
     }
 
+    @Override
+    protected void onDestroy() {
+       //注销广播
+        unregisterReceiver(broadcastReceiver);
+        super.onDestroy();
+    }
 }

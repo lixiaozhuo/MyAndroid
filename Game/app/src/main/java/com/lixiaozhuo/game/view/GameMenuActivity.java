@@ -2,40 +2,41 @@ package com.lixiaozhuo.game.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.AudioAttributes;
-import android.media.AudioManager;
-import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.service.MusicService;
 
-import java.util.HashMap;
-
 /**
  * 游戏初始菜单
  */
-public class GameMenu extends Activity implements View.OnClickListener {
+public class GameMenuActivity extends Activity implements View.OnClickListener {
 
     private MusicService musicService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //透明导航栏
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         setContentView(R.layout.game_menu);
         //获取控件并绑定事件
         findViewById(R.id.btnPlay).setOnClickListener(this);
         findViewById(R.id.btnRecord).setOnClickListener(this);
         findViewById(R.id.btnSetting).setOnClickListener(this);
         findViewById(R.id.btnExit).setOnClickListener(this);
+        //作者按钮
+        findViewById(R.id.btnAuthor).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //打开github
+                startActivity(new Intent(GameMenuActivity.this,GitHubPageActivity.class));
+            }
+        });
+
         musicService = new MusicService(this);
     }
 
@@ -46,7 +47,7 @@ public class GameMenu extends Activity implements View.OnClickListener {
         switch (view.getId()){
             //开始游戏
             case R.id.btnPlay:
-                startActivity(new Intent(this,PlayGame.class));
+                startActivity(new Intent(this,GamePlayActivity.class));
                 break;
             //排行榜
             case R.id.btnRecord:

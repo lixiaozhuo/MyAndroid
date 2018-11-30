@@ -56,6 +56,14 @@ public class LayoutService {
 
     /**
      * 更新记录
+     */
+    public void clearTime() {
+        String score = new SimpleDateFormat("mm" + "分" + "ss" + "秒").format(new Date(0));
+        ((TextView) layout.findViewById(R.id.textCount)).setText(score);
+    }
+
+    /**
+     * 更新记录
      *
      * @param Time
      */

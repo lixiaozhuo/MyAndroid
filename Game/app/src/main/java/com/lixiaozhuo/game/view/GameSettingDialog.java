@@ -37,6 +37,8 @@ public class GameSettingDialog extends Dialog implements View.OnClickListener{
         setting = gameSettingService.getSetting();
         //将对应人物和级别选中
         ((RadioButton)findViewById(setting.getMenNO())).setChecked(true);
+        Log.e("AndroidApplication",setting.getLevelNO()+"");
+        Log.e("AndroidApplication",R.id.radioLevel1+"");
         ((RadioButton)findViewById(setting.getLevelNO())).setChecked(true);
         //设置级别按钮单选
         radioSingleSelection(setting.getLevelNO());

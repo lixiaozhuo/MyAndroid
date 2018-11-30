@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/GameMenu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/menu_bg"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true">
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
 
     <ImageButton
         android:id="@+id/btnPlay"
@@ -15,30 +14,30 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
-        android:src="@mipmap/button_play"
-        android:background="#0fff"/>
+        android:background="#0fff"
+        android:src="@mipmap/button_play" />
 
     <ImageButton
         android:id="@+id/btnRecord"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/btnPlay"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
+        android:background="#0fff"
         android:scaleType="fitCenter"
-        android:src="@mipmap/button_record"
-        android:background="#0fff"/>
+        android:src="@mipmap/button_record" />
 
     <ImageButton
         android:id="@+id/btnSetting"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/btnRecord"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
+        android:background="#0fff"
         android:scaleType="fitCenter"
-        android:src="@mipmap/button_setting"
-        android:background="#0fff"/>
+        android:src="@mipmap/button_setting" />
 
 
     <ImageButton
@@ -46,9 +45,19 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_below="@id/btnSetting"
-        android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="#0fff"
         android:scaleType="fitCenter"
-        android:src="@mipmap/button_exit"
-        android:background="#0fff"/>
+        android:src="@mipmap/button_exit" />
+
+    <TextView
+        android:id="@+id/btnAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp"
+        android:text="By lixiaozhuo"
+        android:textSize="15sp" />
 </RelativeLayout>

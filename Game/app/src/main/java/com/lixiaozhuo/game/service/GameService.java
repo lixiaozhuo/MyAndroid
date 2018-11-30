@@ -35,6 +35,8 @@ public class GameService {
     public void initGame(Game game) {
         //清空计时
         game.setTime(0);
+        //清空计时显示
+        layoutService.clearTime();
         //修改游戏状态为运行态
         game.setGameState(GameState.RUNNING);
         //清除界面中的人物和踏板
@@ -134,6 +136,7 @@ public class GameService {
         game.setTime(game.getTime() + 1000);
         //界面更新
         layoutService.updateTime(game.getTime());
+
     }
 
 }
