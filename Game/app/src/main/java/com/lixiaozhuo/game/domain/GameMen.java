@@ -1,7 +1,6 @@
 package com.lixiaozhuo.game.domain;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -14,15 +13,15 @@ public class GameMen {
     //人物编号
     private int menNO;
     //人物坐标
-    private int x,y;
+    private int x, y;
     //人物大小
-    private int width,height;
+    private int width, height;
     //人物移动速度
     private int speed;
     //人物图像
     private ImageView menImage;
 
-    public GameMen(int menNO, int x, int y,int speed, Context context) {
+    public GameMen(int menNO, int x, int y, int speed, Context context) {
         this.menNO = menNO;
         this.x = x;
         this.y = y;
@@ -67,11 +66,11 @@ public class GameMen {
         return height;
     }
 
-    public int getSpeed(){
+    public int getSpeed() {
         return speed;
     }
 
-    public ImageView getMenImage(){
+    public ImageView getMenImage() {
         return menImage;
     }
 

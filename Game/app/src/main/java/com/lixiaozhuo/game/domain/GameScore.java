@@ -4,6 +4,7 @@ import com.lixiaozhuo.game.R;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * 游戏得分
@@ -24,7 +25,7 @@ public class GameScore implements Serializable {
     }
 
     public String getLevelName() {
-        String name = "";
+        String name;
         switch (levelNO) {
             case R.id.radioLevel1:
                 name = "级别1";
@@ -49,6 +50,6 @@ public class GameScore implements Serializable {
     }
 
     public String getScore() {
-        return new SimpleDateFormat("mm" + "分" + "ss" + "秒").format(time);
+        return new SimpleDateFormat("mm" + "分" + "ss" + "秒", Locale.getDefault()).format(time);
     }
 }

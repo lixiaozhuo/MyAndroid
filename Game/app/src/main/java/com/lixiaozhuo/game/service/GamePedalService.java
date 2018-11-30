@@ -32,7 +32,6 @@ public class GamePedalService {
         //随记生成踏板
         int length;
         int x;
-        int y = screenHeight;
         while (true) {
             //踏板长度为1/2-1倍之间
             length = new Random().nextInt(pedalWidth - 3 * (pedalWidth / 4)) + 3 * (pedalWidth / 4);
@@ -43,8 +42,7 @@ public class GamePedalService {
                 break;
             }
         }
-        GamePedal pedal = new GamePedal(length, x, y, speed, context);
-        return pedal;
+        return new GamePedal(length, x, screenHeight, speed, context);
     }
 
     /**
@@ -57,14 +55,11 @@ public class GamePedalService {
     /**
      * 踏板是否出界
      *
-     * @param pedal
-     * @return
+     * @param pedal 踏板
+     * @return 踏板是否死亡
      */
     public boolean isPedalDead(GamePedal pedal) {
-        //踏板出界
-        if (pedal.getY() <= 0) {
-            return true;
-        }
-        return false;
+        //踏板是否出界
+        return pedal.getY() <= 0;
     }
 }

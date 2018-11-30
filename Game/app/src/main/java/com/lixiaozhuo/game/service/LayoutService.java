@@ -9,6 +9,7 @@ import com.lixiaozhuo.game.domain.GamePedal;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * 游戏布局业务
@@ -55,20 +56,20 @@ public class LayoutService {
     }
 
     /**
-     * 更新记录
+     * 清空记录
      */
     public void clearTime() {
-        String score = new SimpleDateFormat("mm" + "分" + "ss" + "秒").format(new Date(0));
+        String score = new SimpleDateFormat("mm" + "分" + "ss" + "秒", Locale.getDefault()).format(new Date(0));
         ((TextView) layout.findViewById(R.id.textCount)).setText(score);
     }
 
     /**
      * 更新记录
      *
-     * @param Time
+     * @param Time 新时间
      */
     public void updateTime(Long Time) {
-        String score = new SimpleDateFormat("mm" + "分" + "ss" + "秒").format(new Date(Time));
+        String score = new SimpleDateFormat("mm" + "分" + "ss" + "秒", Locale.getDefault()).format(new Date(Time));
         ((TextView) layout.findViewById(R.id.textCount)).setText(score);
     }
 

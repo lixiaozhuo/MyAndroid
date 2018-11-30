@@ -11,13 +11,10 @@ import java.util.List;
  * 游戏记录业务
  */
 public class GameRecordService {
-    //应用上下文
-    private Context context;
     //数据库帮助器
     private GameRecordSQLiteOpenHelper dbHelper;
 
     public GameRecordService(Context context) {
-        this.context = context;
         //初始化数据库帮助器
         dbHelper = new GameRecordSQLiteOpenHelper(context);
     }
@@ -25,7 +22,7 @@ public class GameRecordService {
     /**
      * 获取记录
      *
-     * @return
+     * @return 游戏记录
      */
     public List<GameScore> getRecord() {
         return dbHelper.onList();
@@ -34,7 +31,7 @@ public class GameRecordService {
     /**
      * 更新记录
      *
-     * @param gameScore
+     * @param gameScore 游戏记录
      */
     public void updateRecord(GameScore gameScore) {
         dbHelper.onUpdate(gameScore);

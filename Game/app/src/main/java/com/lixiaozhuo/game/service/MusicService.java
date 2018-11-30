@@ -40,7 +40,7 @@ public class MusicService {
     }
 
     //音乐服务连接
-    public ServiceConnection musicServiceConnection = new ServiceConnection() {
+    private ServiceConnection musicServiceConnection = new ServiceConnection() {
         //活动与服务连接断开时调用
         @Override
         public void onServiceDisconnected(ComponentName arg0) {

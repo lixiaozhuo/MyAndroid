@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.RelativeLayout;
 
 import com.lixiaozhuo.game.common.GameState;
@@ -24,13 +23,11 @@ import java.util.Date;
 /**
  * 游戏线程操作
  */
-public class GameThread extends Thread {
-    //线程命令
-    private class Command {
-        public final static int PEDAL_ADD = 1;
-        public final static int PEDAL_MOVE = 2;
-        public final static int UPDATE_TIME = 3;
-    }
+public class PlayThread extends Thread {
+
+    private final static int PEDAL_ADD = 1;
+    private final static int PEDAL_MOVE = 2;
+    private final static int UPDATE_TIME = 3;
 
     private Context context;
     //游戏业务
@@ -38,14 +35,15 @@ public class GameThread extends Thread {
     //音乐服务
     private MusicService musicService;
     //游戏信息
-    private  Game game;
+    private Game game;
 
-    public GameThread(Context context, RelativeLayout layout) {
+    public PlayThread(Context context, RelativeLayout layout) {
         this.context = context;
         gameService = new GameService(context, layout);
         musicService = new MusicService(context);
         game = new Game(new GameSettingService(context).getSetting());
     }
+
     @Override
     public void run() {
         //开始游戏
@@ -53,54 +51,61 @@ public class GameThread extends Thread {
         //计时线程
         timeThread.start();
         //游戏线程
-        playThread.start();
+        gameThread.start();
     }
     /////////////////////////////////////游戏线程运行///////////////////////////////////////////////////////////////////
     /**
      * 接受子线程发来的消息，并且调用相应的方法执行更新UI操作
      */
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(new Handler.Callback() {
         @Override
-        public void handleMessage(Message msg) {
-            if(game.getGameState() != GameState.RUNNING){
-                return;
+        public boolean handleMessage(Message msg) {
+            if (game.getGameState() != GameState.RUNNING) {
+                return false;
             }
             //添加或移动
-            if (msg.what == Command.PEDAL_ADD || msg.what == Command.PEDAL_MOVE) {
-                if (msg.what == Command.PEDAL_ADD) {
+            if (msg.what == PEDAL_ADD || msg.what == PEDAL_MOVE) {
+                if (msg.what == PEDAL_ADD) {
                     //添加踏板
                     gameService.addPedal(game);
                 }
                 //移动人物和踏板
-                if(!gameService.moveGame(game) ){
+                if (!gameService.moveGame(game)) {
                     //人物死亡
                     stopGame();
-                };
+                }
             }
             //更新计时
-            if (msg.what == Command.UPDATE_TIME) {
+            if (msg.what == UPDATE_TIME) {
                 gameService.updateTime(game);
             }
+            return false;
         }
-    };
+    }) ;
 
     //游戏线程
-    private Thread playThread = new Thread(){
+    private Thread gameThread = new Thread() {
         @Override
         public void run() {
             int count = 0;
             while (game.getGameState() != GameState.FINISH) {
                 //阻塞线程达到暂停的方法
-                while (game.getGameState() == GameState.PAUSE);
+                while (game.getGameState() == GameState.PAUSE){
+                    try{
+                        Thread.sleep(1);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
                 try {
                     //睡眠指定时间移动踏板
                     Thread.sleep(20);
                     //发送移动消息
-                    handler.sendEmptyMessage(Command.PEDAL_MOVE);
+                    handler.sendEmptyMessage(PEDAL_MOVE);
                     //固定次数后添加踏板
                     if (count == game.getGameSetting().getAddPedalInterval()) {
                         //发送添加消息
-                        handler.sendEmptyMessage(Command.PEDAL_ADD);
+                        handler.sendEmptyMessage(PEDAL_ADD);
                         count = 0;
                     }
                     count++;
@@ -117,12 +122,18 @@ public class GameThread extends Thread {
         public void run() {
             while (game.getGameState() != GameState.FINISH) {
                 //阻塞线程达到暂停的方法
-                while (game.getGameState() == GameState.PAUSE);
+                while (game.getGameState() == GameState.PAUSE){
+                    try{
+                        Thread.sleep(1);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
                 try {
                     //计时
                     Thread.sleep(1000);
                     //发送更新时间消息
-                    handler.sendEmptyMessage(Command.UPDATE_TIME);
+                    handler.sendEmptyMessage(UPDATE_TIME);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -130,6 +141,7 @@ public class GameThread extends Thread {
         }
     };
     ///////////////////////////////////////控制游戏/////////////////////////////////////////////////////////////////
+
     /**
      * 开始游戏
      */
@@ -157,18 +169,18 @@ public class GameThread extends Thread {
                         finishGame();
                     }
                 }).setNegativeButton("继续游戏", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //继续游戏
-                        continueGame();
-                    }
-                }).setCancelable(false).show();
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //继续游戏
+                continueGame();
+            }
+        }).setCancelable(false).show();
     }
 
     /**
      * 停止游戏
      */
-    public void stopGame() {
+    private void stopGame() {
         //设置游戏状态为暂停
         game.setGameState(GameState.PAUSE);
         //停止音乐
@@ -189,19 +201,19 @@ public class GameThread extends Thread {
                         finishGame();
                     }
                 }).setNegativeButton("再来一把", new DialogInterface.OnClickListener() {
-                    //重新开始游戏
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //开始游戏
-                        startGame();
-                    }
-                }).setCancelable(false).show();
+            //重新开始游戏
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //开始游戏
+                startGame();
+            }
+        }).setCancelable(false).show();
     }
 
     /**
      * 继续游戏
      */
-    public void continueGame() {
+    private void continueGame() {
         //设置游戏状态为游戏中
         game.setGameState(GameState.RUNNING);
         //开始音乐
@@ -211,19 +223,20 @@ public class GameThread extends Thread {
     /**
      * 结束游戏
      */
-    public void finishGame() {
+    private void finishGame() {
         //设置游戏状态为结束
         game.setGameState(GameState.FINISH);
         //关闭窗口
-       ((Activity) context).finish();
+        ((Activity) context).finish();
     }
 
     /**
      * 控制游戏人物移动
-     * @param x
+     *
+     * @param x 移动位置
      */
-    public void moveGameMen(int x){
-        new GameMenService(context).moveMen(game.getGameMen(),x);
+    public void moveGameMen(int x) {
+        new GameMenService(context).moveMen(game.getGameMen(), x);
     }
 
 

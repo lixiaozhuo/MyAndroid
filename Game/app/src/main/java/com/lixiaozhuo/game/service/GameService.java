@@ -30,7 +30,7 @@ public class GameService {
     /**
      * 初始化游戏
      *
-     * @param game
+     * @param game 游戏内容
      */
     public void initGame(Game game) {
         //清空计时
@@ -66,7 +66,7 @@ public class GameService {
     /**
      * 添加踏板
      *
-     * @param game
+     * @param game 游戏内容
      */
     public void addPedal(Game game) {
         //初始化踏板
@@ -80,8 +80,8 @@ public class GameService {
     /**
      * 移动人物和踏板
      *
-     * @param game
-     * @return
+     * @param game 游戏内容
+     * @return 人物是否死亡
      */
     public boolean moveGame(Game game) {
         //遍历踏板集合
@@ -129,7 +129,7 @@ public class GameService {
     /**
      * 更新时间
      *
-     * @param game
+     * @param game 游戏内容
      */
     public void updateTime(Game game) {
         //更新时间

@@ -1,32 +1,30 @@
 package com.lixiaozhuo.game.view;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.components.BatteryBroadcastReceiver;
 import com.lixiaozhuo.game.components.UpdateUIListener;
-import com.lixiaozhuo.game.service.GameMenService;
 import com.lixiaozhuo.game.service.MusicService;
-import com.lixiaozhuo.game.thread.GameThread;
+import com.lixiaozhuo.game.thread.PlayThread;
 
 /**
  * 开始游戏
  */
 public class GamePlayActivity extends Activity {
-    //踏板线程
-    private GameThread gameThread;
-
+    //开始游戏线程
+    private PlayThread playThread;
+    //音乐业务
+    private MusicService musicService;
+    //电池广播接收器
     private BatteryBroadcastReceiver broadcastReceiver;
 
     @Override
@@ -35,6 +33,8 @@ public class GamePlayActivity extends Activity {
         //透明状态栏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.game_play);
+        //音乐业务
+        musicService = new MusicService(this);
         //初始化电池广播接收器
         broadcastReceiver = new BatteryBroadcastReceiver();
         //注册电池广播接收器
@@ -43,21 +43,23 @@ public class GamePlayActivity extends Activity {
             @Override
             public void UpdateUI(String str) {
                 //更新ui
-                ((TextView)findViewById(R.id.showBattery)).setText(str);
+                ((TextView) findViewById(R.id.showBattery)).setText(str);
             }
         });
 
         //初始化游戏线程
-        gameThread = new GameThread(this, (RelativeLayout) findViewById(R.id.playGame));
+        playThread = new PlayThread(this, (RelativeLayout) findViewById(R.id.playGame));
         //开始游戏
-        gameThread.start();
+        playThread.start();
 
         //暂停按钮
         findViewById(R.id.SuspendGame).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //按键声音
+                musicService.playKeyMusic();
                 //暂停游戏
-                gameThread.pauseGame();
+                playThread.pauseGame();
             }
         });
     }
@@ -68,7 +70,7 @@ public class GamePlayActivity extends Activity {
     @Override
     public void onBackPressed() {
         //暂停游戏
-        gameThread.pauseGame();
+        playThread.pauseGame();
     }
 
 
@@ -77,13 +79,9 @@ public class GamePlayActivity extends Activity {
 
     /**
      * 手势操作
-     *
-     * @param event
-     * @return
      */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        GameMenService gameMenService = new GameMenService(this);
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             //当手指按下的时候
             x = event.getX();
@@ -93,10 +91,10 @@ public class GamePlayActivity extends Activity {
             float x2 = event.getX();
             if (x - x2 > 50) {
                 //向左移动
-                gameThread.moveGameMen(-10);
+                playThread.moveGameMen(-10);
             } else if (x2 - x > 50) {
                 //向右移动
-                gameThread.moveGameMen(10);
+                playThread.moveGameMen(10);
             }
         }
         return true;
@@ -104,7 +102,7 @@ public class GamePlayActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-       //注销广播
+        //注销广播
         unregisterReceiver(broadcastReceiver);
         super.onDestroy();
     }

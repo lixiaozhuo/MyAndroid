@@ -59,7 +59,7 @@ public class GameRecordSQLiteOpenHelper extends SQLiteOpenHelper {
 
     /**
      * 查询数据
-     * @return
+     * @return 游戏分数集合
      */
     public List<GameScore> onList(){
         //存储的查询的数据
@@ -82,6 +82,8 @@ public class GameRecordSQLiteOpenHelper extends SQLiteOpenHelper {
                 return o1.getLevelName().compareTo(o2.getLevelName());
             }
         });
+        //关闭游标
+        cursor.close();
         return list;
     }
 }

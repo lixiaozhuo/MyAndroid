@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,6 +21,7 @@ public class GitHubPageActivity extends Activity {
     private WebView webView;
     //进度条
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +29,7 @@ public class GitHubPageActivity extends Activity {
         webView = findViewById(R.id.githubPageWebView);
         progressBar = findViewById(R.id.progressBar);
         //设置WebViewClient，防止请求跳转到系统浏览器
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             //开始加载
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -38,6 +37,7 @@ public class GitHubPageActivity extends Activity {
                 //设置进度条可见
                 progressBar.setVisibility(View.VISIBLE);
             }
+
             //结束加载
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -46,13 +46,12 @@ public class GitHubPageActivity extends Activity {
                 progressBar.setVisibility(View.GONE);
             }
         });
-        webView.setWebChromeClient(new WebChromeClient(){
+        webView.setWebChromeClient(new WebChromeClient() {
             //加载进度
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 //更新进度
                 progressBar.setProgress(newProgress);
-                Log.e("AndroidApplication",newProgress+"");
                 super.onProgressChanged(view, newProgress);
             }
         });

@@ -3,9 +3,6 @@ package com.lixiaozhuo.game.components;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.TextView;
-
-import com.lixiaozhuo.game.R;
 
 /**
  * 电池广播接收器
@@ -28,7 +25,7 @@ public class BatteryBroadcastReceiver extends BroadcastReceiver {
         }
     }
 
-    public void SetUpdateUIListener(UpdateUIListener listener){
+    public void SetUpdateUIListener(UpdateUIListener listener) {
         this.listener = listener;
     }
 }

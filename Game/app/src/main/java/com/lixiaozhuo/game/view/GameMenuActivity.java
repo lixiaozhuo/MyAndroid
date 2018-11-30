@@ -2,12 +2,9 @@ package com.lixiaozhuo.game.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.WindowManager;
-
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.service.MusicService;
@@ -16,7 +13,7 @@ import com.lixiaozhuo.game.service.MusicService;
  * 游戏初始菜单
  */
 public class GameMenuActivity extends Activity implements View.OnClickListener {
-
+    //音乐业务
     private MusicService musicService;
 
     @Override
@@ -33,10 +30,10 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 //打开github
-                startActivity(new Intent(GameMenuActivity.this,GitHubPageActivity.class));
+                startActivity(new Intent(GameMenuActivity.this, GitHubPageActivity.class));
             }
         });
-
+        //音乐业务
         musicService = new MusicService(this);
     }
 
@@ -44,10 +41,10 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         //敲击声音
         musicService.playKeyMusic();
-        switch (view.getId()){
+        switch (view.getId()) {
             //开始游戏
             case R.id.btnPlay:
-                startActivity(new Intent(this,GamePlayActivity.class));
+                startActivity(new Intent(this, GamePlayActivity.class));
                 break;
             //排行榜
             case R.id.btnRecord:

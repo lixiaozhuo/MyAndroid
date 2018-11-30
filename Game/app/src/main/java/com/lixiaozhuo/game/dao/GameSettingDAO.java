@@ -2,7 +2,6 @@ package com.lixiaozhuo.game.dao;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.widget.RadioButton;
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.domain.GameSetting;
@@ -16,25 +15,26 @@ public class GameSettingDAO {
     //上下文
     private Context context;
 
-    public GameSettingDAO(Context context){
+    public GameSettingDAO(Context context) {
         this.context = context;
     }
 
     /**
      * 保存设置
-     * @param gameSetting
+     *
+     * @param gameSetting 游戏设置
      */
-    public void saveSetting(GameSetting gameSetting){
+    public void saveSetting(GameSetting gameSetting) {
         //将人物编号和级别编号保存到SharedPreferences
         //创建名为“SettingData”的文件，加入键值对，保存数据
         SharedPreferences.Editor editor = context.getSharedPreferences("SettingData", MODE_PRIVATE).edit();
         editor.putString("menNO", String.valueOf(gameSetting.getMenNO()));
         editor.putString("levelNO", String.valueOf(gameSetting.getLevelNO()));
         //提交数据
-        editor.commit();
+        editor.apply();
     }
 
-    public GameSetting getSetting(){
+    public GameSetting getSetting() {
         //取出人物编号和级别编号
         SharedPreferences preferences = context.getSharedPreferences("SettingData", MODE_PRIVATE);
         //将数据保存到对象中
