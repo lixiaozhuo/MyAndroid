@@ -26,8 +26,11 @@ public class GitHubPageActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.github_page);
-        webView = findViewById(R.id.githubPageWebView);
+        //进度条
         progressBar = findViewById(R.id.progressBar);
+        //浏览器
+        webView = findViewById(R.id.githubPageWebView);
+        //WebSettings webSettings = webView.getSettings();
         //设置WebViewClient，防止请求跳转到系统浏览器
         webView.setWebViewClient(new WebViewClient() {
             //开始加载
