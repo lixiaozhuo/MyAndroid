@@ -15,7 +15,7 @@ import com.lixiaozhuo.androidcomponent.R;
 
 //广播
 public class BroadcastActivity extends Activity {
-
+    private final static String TAG = "App:Broadcast";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class BroadcastActivity extends Activity {
                 //指定广播接受者的包名(发送显式广播)
                 intent.setPackage(getPackageName());
                 sendBroadcast(intent);
-                Log.e("AndroidApplication","sendBroadcast");
+                Log.e(TAG,"sendBroadcast");
             }
         });
     }

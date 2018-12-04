@@ -93,7 +93,7 @@ public class SQLiteApplicationActivity extends Activity {
                 switch (button.getId()) {
                     //创建数据库
                     case R.id.db_create: {
-                        dbHelper = new SQLiteApplicationHelper(SQLiteApplicationActivity.this, "school.db", null, 3);
+                        dbHelper = new SQLiteApplicationHelper(SQLiteApplicationActivity.this, "SQLite_application.db", null, 1);
                         //获取数据库管理对象
                         database = dbHelper.getWritableDatabase();
                         //关闭数据库

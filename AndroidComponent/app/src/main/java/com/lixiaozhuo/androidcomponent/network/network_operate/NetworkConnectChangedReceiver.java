@@ -15,18 +15,19 @@ import android.util.Log;
  * 显示当前网络状态
  */
 public class NetworkConnectChangedReceiver extends BroadcastReceiver {
+    public static final String TAG = "App:Network";
     /**
      * 标记第一种监听方式
      */
-    public static final String TAG0 = "监听方式1:first";
+    public static final String TAG0 = "App:Network-监听方式1:first";
     /**
      * 标记第二种监听方式
      */
-    public static final String TAG1 = "监听方式2:second";
+    public static final String TAG1 = "App:Network-监听方式2:second";
     /**
      * 标记第三种监听方式
      */
-    public static final String TAG2 = "监听方式3:third";
+    public static final String TAG2 = "App:Network-监听方式3:third";
     /**
      * 存储当前网络状态
      */
@@ -86,7 +87,7 @@ public class NetworkConnectChangedReceiver extends BroadcastReceiver {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             //获取网络连接管理器
             ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            Log.i(TAG2, "CONNECTIVITY_ACTION");
+            Log.e(TAG2, "CONNECTIVITY_ACTION");
             networkState = "\n您的手机当前网络状态是：\n\n";
             NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
             if (activeNetwork != null) {
@@ -112,7 +113,7 @@ public class NetworkConnectChangedReceiver extends BroadcastReceiver {
             } else {
                 networkState += "当前没有网络连接，请确保你已经打开网络 ";
             }
-            Log.e("String:", networkState);
+            Log.e(TAG, networkState);
         }
 
     }

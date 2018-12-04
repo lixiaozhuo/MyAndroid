@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lixiaozhuo.androidcomponent">
     <!--用户权限-->
+    <!--联网-->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--网络状态-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--手机联系人-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
         android:name=".thread.app.ThreadCustomApp"
@@ -75,6 +78,11 @@
         <activity android:name=".content_provider.ContentProviderActivity"/>
         <!--provider-->
         <activity android:name=".content_provider.provider.ContentProvider_ProviderActivity"/>
+        <provider
+            android:name=".content_provider.provider.ContentProvider_Provider"
+            android:authorities="com.lixiaozhuo.provider"
+            android:enabled="true"
+            android:exported="true" />
         <!--user-->
         <activity android:name=".content_provider.user.ContentProvider_UserActivity"/>
         <!--system-book-->

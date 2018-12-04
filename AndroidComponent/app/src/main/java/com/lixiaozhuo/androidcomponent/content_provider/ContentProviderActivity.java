@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.lixiaozhuo.androidcomponent.R;
+import com.lixiaozhuo.androidcomponent.content_provider.provider.ContentProvider_ProviderActivity;
 import com.lixiaozhuo.androidcomponent.content_provider.system_book.ContentProvider_SystemBookActivity;
 import com.lixiaozhuo.androidcomponent.content_provider.user.ContentProvider_UserActivity;
 import com.lixiaozhuo.androidcomponent.save_data.shared_preferences.SharedPreferencesActivity;
@@ -28,7 +29,7 @@ public class ContentProviderActivity extends Activity {
      * @param v
      */
     public void providerTest(View v){
-        Intent intent = new Intent(ContentProviderActivity.this, SharedPreferencesActivity.class);
+        Intent intent = new Intent(ContentProviderActivity.this, ContentProvider_ProviderActivity.class);
         startActivity(intent);
     }
 

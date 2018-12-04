@@ -17,6 +17,8 @@ import com.lixiaozhuo.androidcomponent.R;
  * Handler2
  */
 public class Handler2Activity extends Activity {
+    private final static String TAG1 = "App:Handler-调用主线程handler";
+    private final static String TAG2 = "App:Handler-调用子线程MyHandler";
     //显示控件
     private  TextView textView;
     @Override
@@ -32,11 +34,11 @@ public class Handler2Activity extends Activity {
         public void handleMessage(Message message){
             switch (message.what){
                 case 1:
-                    Log.e("调用主线程handler:",message.toString());
+                    Log.e(TAG1,message.toString());
                     textView.setText("直接使用主线程Handler\n更新UI");
                     break;
                 case 2:
-                    Log.e("调用主线程handler:",message.toString());
+                    Log.e(TAG1,message.toString());
                     textView.setText("子线程MyHandler发送消息\n调用主线程Handler\n更新UI");
                     break;
                 default:
@@ -84,7 +86,7 @@ public class Handler2Activity extends Activity {
                     if(message.what == 100)
                         //子线程通过修改主线程的Handler更新UI
                         handler.sendEmptyMessage(2);
-                        Log.e("调用子线程MyHandler:",message.toString());
+                        Log.e(TAG2,message.toString());
                 }
             };
             //发送到消息队列

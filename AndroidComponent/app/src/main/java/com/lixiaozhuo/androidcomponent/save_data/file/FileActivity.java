@@ -75,7 +75,7 @@ public class FileActivity extends Activity {
         BufferedWriter writer = null;
         try {
             //初始化流
-            writer = new BufferedWriter(new OutputStreamWriter(openFileOutput("data-file", Context.MODE_PRIVATE)));
+            writer = new BufferedWriter(new OutputStreamWriter(openFileOutput("saveFileTest", Context.MODE_PRIVATE)));
             writer.write(inputText);
             Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
@@ -103,7 +103,7 @@ public class FileActivity extends Activity {
         StringBuilder content = new StringBuilder();
         try {
             //获取流
-            reader = new BufferedReader(new InputStreamReader(openFileInput("data-file")));
+            reader = new BufferedReader(new InputStreamReader(openFileInput("saveFileTest")));
             String line = "";
             while ((line = reader.readLine()) != null) {
                 //将读取的数据存放到容器中

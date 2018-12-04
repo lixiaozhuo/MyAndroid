@@ -7,7 +7,7 @@ public class SQLiteApplicationStudent {
     /**
      * 表名
      */
-    public static final String TABLE = "Student";
+    public static final String TABLE = "student";
     /**
      * id列名
      */

@@ -19,7 +19,7 @@ import com.lixiaozhuo.androidcomponent.save_data.shared_preferences.SharedPrefer
  * SQLite
  */
 public class SQLiteActivity extends Activity {
-
+    private final static String TAG = "App:SQLite";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class SQLiteActivity extends Activity {
      */
     public void createDatabase(View view) {
         //创建帮助器对象
-        oh = new MySQLiteOpenHelper(this, "people.db", null, 1);
+        oh = new MySQLiteOpenHelper(this, "SQLite.db", null, 1);
         //获取数据库管理对象
         db = oh.getWritableDatabase();
         Toast.makeText(this, "创建数据库成功", Toast.LENGTH_SHORT).show();
@@ -72,7 +72,7 @@ public class SQLiteActivity extends Activity {
      */
     public void delete(View view) {
         //删除姓名为"刘得意"的学生的信息
-        db.execSQL("DELETE FROM Student WHERE name = ?", new Object[]{"刘得意"});
+        db.execSQL("DELETE FROM student WHERE name = ?", new Object[]{"刘得意"});
         Toast.makeText(this, "删除数据成功", Toast.LENGTH_SHORT).show();
     }
 
@@ -108,9 +108,9 @@ public class SQLiteActivity extends Activity {
             int no = cursor.getInt(cursor.getColumnIndex("sno"));
             float cpp = cursor.getFloat(cursor.getColumnIndex("cpp"));
             //输出学生的学号、姓名和与姓名对应的C++成绩
-            Log.e("AndroidApplication", "[NO = " + no + ",Name = "+ name + ", 成绩 = " + cpp + "]");
+            Log.e(TAG, "[NO = " + no + ",Name = "+ name + ", 成绩 = " + cpp + "]");
         }
-        Log.e("AndroidApplication","===============================");
+        Log.e(TAG,"===============================");
         Toast.makeText(this, "查询数据成功", Toast.LENGTH_SHORT).show();
     }
 

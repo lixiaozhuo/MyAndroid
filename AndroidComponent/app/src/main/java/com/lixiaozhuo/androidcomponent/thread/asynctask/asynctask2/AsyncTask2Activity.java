@@ -16,6 +16,7 @@ import com.lixiaozhuo.androidcomponent.R;
  * AsyncTask2
  */
 public class AsyncTask2Activity extends Activity {
+    private static final String TAG = "App:AsyncTask";
     //
     private EditText chronoValue1;
     //
@@ -97,7 +98,7 @@ public class AsyncTask2Activity extends Activity {
                         }
                         // 暂停一秒
                         Thread.sleep(1000);
-                        Log.e("AndroidApplication", j + "");
+                        Log.e(TAG, j + "");
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -129,7 +130,7 @@ public class AsyncTask2Activity extends Activity {
         for (int i = 0; i <= integer; i++) {
             try {
                 Thread.sleep(1000);
-                Log.e("AndroidApplication:", i + "");
+                Log.e(TAG, i + "");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

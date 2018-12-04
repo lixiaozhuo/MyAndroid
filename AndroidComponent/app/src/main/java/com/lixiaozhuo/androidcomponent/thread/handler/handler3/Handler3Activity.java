@@ -13,6 +13,8 @@ import com.lixiaozhuo.androidcomponent.R;
  * Handler3
  */
 public class Handler3Activity extends AppCompatActivity {
+    private final static String TAG = "App:Handler";
+
     //线程
     private HandlerThread myHandlerThread ;
     //
@@ -32,7 +34,7 @@ public class Handler3Activity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                Log.e( "AndroidApplication" , "消息： " + msg.what + "  线程： " + Thread.currentThread().getName()  ) ;
+                Log.e( TAG , "消息： " + msg.what + "  线程： " + Thread.currentThread().getName()  ) ;
 
             }
         };

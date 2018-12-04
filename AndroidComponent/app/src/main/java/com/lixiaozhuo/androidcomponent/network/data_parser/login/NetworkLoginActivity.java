@@ -23,7 +23,7 @@ import java.net.URL;
  * 远程登录
  */
 public class NetworkLoginActivity extends Activity {
-
+    private final static String TAG = "App:NetworkLogin";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +80,7 @@ public class NetworkLoginActivity extends Activity {
                         response.append(line);
                     }
                     //显示响应结果
-                    Log.e("AndroidApplication", response.toString());
+                    Log.e(TAG, response.toString());
                     //解析请求
                     parseRequest();
                 } catch (Exception e) {
@@ -118,7 +118,7 @@ public class NetworkLoginActivity extends Activity {
                 String psw = jsonObject.getString("psw");
                 result = "\n[ID = " + id + "  , Name = " + psw + "]\n";
                 //显示结果
-                Log.e("AndroidApplication", result);
+                Log.e(TAG, result);
                 if (id.equals("1") && psw.equals("1")){
                     Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                 }

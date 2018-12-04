@@ -15,7 +15,7 @@ import com.lixiaozhuo.androidcomponent.R;
  */
 public class AsyncTask1Activity extends Activity {
     //标志
-    private static final String TAG = "AndroidApplication";
+    private static final String TAG = "App:AsyncTask";
     //加载数据
     private Button btn_progress;
     //进度条

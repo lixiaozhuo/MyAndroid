@@ -24,20 +24,20 @@ public class ContentProvider_Provider extends ContentProvider {
      */
     public static final int CATEGORY_DIR = 2;
     /**
-     *指定分离
+     * 指定分类
      */
     public static final int CATEGORY_ITEM = 3;
     /**
      *
      */
-    public static final String AUTHORITY = "com.example.databasetest.provider";
+    public static final String AUTHORITY = "com.lixiaozhuo.provider";
+
+    //自定义帮助器
+    private ContentProvider_ProviderHelper dbHelper;
 
     //帮助匹配URI
     private static UriMatcher uriMatcher;
 
-    //自定义帮助器
-    private ContentProvider_ProviderHelper dbHelper;
-    //
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(AUTHORITY, "book", BOOK_DIR);
@@ -49,7 +49,7 @@ public class ContentProvider_Provider extends ContentProvider {
     @Override
     public boolean onCreate() {
         //实例化数据库帮助器
-        dbHelper = new ContentProvider_ProviderHelper(getContext(), "BookStore.db", null, 2);
+        dbHelper = new ContentProvider_ProviderHelper(getContext(), "BookStore.db", null, 1);
         return true;
     }
 
@@ -74,8 +74,9 @@ public class ContentProvider_Provider extends ContentProvider {
                 cursor = db.query("Book", projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case BOOK_ITEM:
-                //查询指定图书数据
+                //获取uri中的图书数据id
                 String bookId = uri.getPathSegments().get(1);
+                //查询指定图书数据
                 cursor = db.query("Book", projection, "id = ?", new String[] { bookId }, null, null, sortOrder);
                 break;
             case CATEGORY_DIR:
@@ -83,8 +84,9 @@ public class ContentProvider_Provider extends ContentProvider {
                 cursor = db.query("Category", projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case CATEGORY_ITEM:
-                //查询指定分类信息
+                //获取uri中的分类id
                 String categoryId = uri.getPathSegments().get(1);
+                //查询指定分类信息
                 cursor = db.query("Category", projection, "id = ?", new String[] { categoryId }, null, null, sortOrder);
                 break;
             default:
@@ -101,7 +103,7 @@ public class ContentProvider_Provider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-
+        //获取数据库
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Uri uriReturn = null;
         switch (uriMatcher.match(uri)) {
@@ -143,8 +145,9 @@ public class ContentProvider_Provider extends ContentProvider {
                 updatedRows = db.update("Book", values, selection, selectionArgs);
                 break;
             case BOOK_ITEM:
-                //更新指定图书数据
+                //获取uri中的图书数据id
                 String bookId = uri.getPathSegments().get(1);
+                //更新指定图书数据
                 updatedRows = db.update("Book", values, "id = ?", new String[] { bookId });
                 break;
             case CATEGORY_DIR:
@@ -152,8 +155,9 @@ public class ContentProvider_Provider extends ContentProvider {
                 updatedRows = db.update("Category", values, selection, selectionArgs);
                 break;
             case CATEGORY_ITEM:
-                //更新指定分类信息
+                //获取uri中的分类id
                 String categoryId = uri.getPathSegments().get(1);
+                //更新指定分类信息
                 updatedRows = db.update("Category", values, "id = ?", new String[] { categoryId });
                 break;
             default:
@@ -183,6 +187,7 @@ public class ContentProvider_Provider extends ContentProvider {
             case BOOK_ITEM:
                 //删除指定图书信息
                 String bookId = uri.getPathSegments().get(1);
+                //获取uri中的图书数据id
                 deletedRows = db.delete("Book", "id = ?", new String[] { bookId });
                 break;
             case CATEGORY_DIR:
@@ -190,8 +195,9 @@ public class ContentProvider_Provider extends ContentProvider {
                 deletedRows = db.delete("Category", selection, selectionArgs);
                 break;
             case CATEGORY_ITEM:
-                //删除指定分类信息
+                //获取uri中的分类id
                 String categoryId = uri.getPathSegments().get(1);
+                //删除指定分类信息
                 deletedRows = db.delete("Category", "id = ?", new String[] { categoryId });
                 break;
             default:
@@ -210,13 +216,13 @@ public class ContentProvider_Provider extends ContentProvider {
     public String getType(Uri uri) {
         switch (uriMatcher.match(uri)) {
             case BOOK_DIR:
-                return "vnd.android.cursor.dir/vnd.com.example.databasetest. provider.book";
+                return "vnd.android.cursor.dir/com.lixiaozhuo.provider.book";
             case BOOK_ITEM:
-                return "vnd.android.cursor.item/vnd.com.example.databasetest. provider.book";
+                return "vnd.android.cursor.item/com.lixiaozhuo.provider.book";
             case CATEGORY_DIR:
-                return "vnd.android.cursor.dir/vnd.com.example.databasetest. provider.category";
+                return "vnd.android.cursor.dir/com.lixiaozhuo.provider.category";
             case CATEGORY_ITEM:
-                return "vnd.android.cursor.item/vnd.com.example.databasetest. provider.category";
+                return "vnd.android.cursor.item/lixiaozhuo.provider.category";
         }
         return null;
     }

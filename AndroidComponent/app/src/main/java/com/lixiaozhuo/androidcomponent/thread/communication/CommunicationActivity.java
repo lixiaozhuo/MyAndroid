@@ -19,6 +19,8 @@ import java.util.Date;
  */
 public class CommunicationActivity extends Activity {
 
+    private final static String TAG = "App:Communication";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +32,8 @@ public class CommunicationActivity extends Activity {
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg){
-            Log.e("AndroidApplication", msg.obj+"，收到消息线程："+Thread.currentThread().getName());
-            Log.e("AndroidApplication", "============================================================");
+            Log.e(TAG, msg.obj+"，收到消息线程："+Thread.currentThread().getName());
+            Log.e(TAG, "============================================================");
             super.handleMessage(msg);
         }
     };
@@ -47,15 +49,15 @@ public class CommunicationActivity extends Activity {
     public class Thread1 extends Thread{
         @Override
         public void run() {
-            Log.e("AndroidApplication", "启动进程："+Thread.currentThread().getName());
+            Log.e(TAG, "启动进程："+Thread.currentThread().getName());
             //创建消息队列
             Looper.prepare();
             childHandler = new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
                     super.handleMessage(msg);
-                    Log.e("AndroidApplication", msg.obj+"，收到消息线程："+Thread.currentThread().getName());
-                    Log.e("AndroidApplication", "============================================================");
+                    Log.e(TAG, msg.obj+"，收到消息线程："+Thread.currentThread().getName());
+                    Log.e(TAG, "============================================================");
                 }
             };
             //开启循环消息队列
@@ -75,7 +77,7 @@ public class CommunicationActivity extends Activity {
         Date date = new Date(System.currentTimeMillis());
         msg.obj = formatter.format(date)+"";
         childHandler.sendMessage(msg);
-        Log.e("AndroidApplication", msg.obj+"，发送消息线程："+Thread.currentThread().getName());
+        Log.e(TAG, msg.obj+"，发送消息线程："+Thread.currentThread().getName());
     }
 
     /**
@@ -94,7 +96,7 @@ public class CommunicationActivity extends Activity {
             Date date = new Date(System.currentTimeMillis());
             msg.obj = formatter.format(date)+"";
             childHandler.sendMessage(msg);
-            Log.i("AndroidApplication", msg.obj+"，发送消息线程："+Thread.currentThread().getName());
+            Log.e(TAG, msg.obj+"，发送消息线程："+Thread.currentThread().getName());
         }
     }
 
@@ -115,7 +117,7 @@ public class CommunicationActivity extends Activity {
             Date date = new Date(System.currentTimeMillis());
             msg.obj = formatter.format(date)+"";
             handler.sendMessage(msg);
-            Log.i("AndroidApplication", msg.obj+"，发送消息线程："+Thread.currentThread().getName());
+            Log.i(TAG, msg.obj+"，发送消息线程："+Thread.currentThread().getName());
         }
     }
 

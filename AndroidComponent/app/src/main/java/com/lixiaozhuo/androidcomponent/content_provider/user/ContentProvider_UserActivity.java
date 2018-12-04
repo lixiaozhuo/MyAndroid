@@ -17,6 +17,7 @@ import com.lixiaozhuo.androidcomponent.R;
  * 使用其他程序提供的数据
  */
 public class ContentProvider_UserActivity extends Activity {
+    private final static String TAG = "App:ContextProvide-User";
     //编号
     private String newId;
 
@@ -30,26 +31,25 @@ public class ContentProvider_UserActivity extends Activity {
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("content://com.example.databasetest.provider/book");
+                Uri uri = Uri.parse("content://com.lixiaozhuo.provider/book");
                 //存储数据
                 ContentValues values = new ContentValues();
                 values.put("name", "Java并发编程实战");
                 values.put("author", "张");
                 values.put("pages", 1000);
                 values.put("price", 55.55);
-                //
+                //插入数据
                 Uri newUri = getContentResolver().insert(uri, values);
                 newId = newUri.getPathSegments().get(1);
                 Toast.makeText(ContentProvider_UserActivity.this, "添加数据成功", Toast.LENGTH_SHORT).show();
             }
         });
         //查询数据
-        Button queryData = (Button) findViewById(R.id.query_data);
+        Button queryData =  findViewById(R.id.query_data);
         queryData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                Uri uri = Uri.parse("content://com.example.databasetest.provider/book");
+                Uri uri = Uri.parse("content://com.lixiaozhuo.provider/book");
                 //查询数据获取游标
                 Cursor cursor = getContentResolver().query(uri, null, null, null, null);
                 if (cursor != null) {
@@ -60,10 +60,8 @@ public class ContentProvider_UserActivity extends Activity {
                         int pages = cursor.getInt(cursor.getColumnIndex ("pages"));
                         double price = cursor.getDouble(cursor. getColumnIndex("price"));
                         //显示数据
-                        Log.d("AndroidApplication", "Name = " + name);
-                        Log.d("AndroidApplication", "Author = " + author);
-                        Log.d("AndroidApplication", "Pages = " + pages);
-                        Log.d("AndroidApplication", "Price = " + price);
+                        Log.e(TAG, "[Name = " + name +"," +
+                                "Author = " + author+",Pages = " + pages+",Price = " + price +"]");
                     }
                     cursor.close();
                 }
@@ -71,12 +69,11 @@ public class ContentProvider_UserActivity extends Activity {
             }
         });
         // 更新数据
-        Button updateData = (Button) findViewById(R.id.update_data);
+        Button updateData =  findViewById(R.id.update_data);
         updateData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                Uri uri = Uri.parse("content://com.example.databasetest.provider/book/" + newId);
+                Uri uri = Uri.parse("content://com.lixiaozhuo.provider/book/" + newId);
                 //存储数据
                 ContentValues values = new ContentValues();
                 values.put("name", "Java并发编程实战");
@@ -92,8 +89,7 @@ public class ContentProvider_UserActivity extends Activity {
         deleteData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                Uri uri = Uri.parse("content://com.example.databasetest.provider/book/" + newId);
+                Uri uri = Uri.parse("content://com.lixiaozhuo.provider/book/" + newId);
                 // 删除数据
                 getContentResolver().delete(uri, null, null);
                 Toast.makeText(ContentProvider_UserActivity.this, "删除数据成功", Toast.LENGTH_SHORT).show();

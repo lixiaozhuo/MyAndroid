@@ -12,7 +12,7 @@ import com.lixiaozhuo.androidcomponent.R;
  */
 public class Activity3 extends Activity {
     //打印信息标志
-    private static final String TAG = "AndroidApplication3";
+    private static final String TAG = "App:Activity3";
 
     /**
      *只在活动第一次被创建时被调用

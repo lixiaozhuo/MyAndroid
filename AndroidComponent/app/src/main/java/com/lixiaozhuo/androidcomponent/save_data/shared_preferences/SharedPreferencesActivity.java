@@ -28,7 +28,7 @@ public class SharedPreferencesActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //创建名为“data”的文件，加入键值对，保存数据
-                SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences("sharedPreferencesTest",MODE_PRIVATE).edit();
                 editor.putString("name",userName.getText().toString());
                 editor.putString("password",password.getText().toString());
                 //提交数据
@@ -42,7 +42,7 @@ public class SharedPreferencesActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //取出文件中键值对，并提示出来
-                SharedPreferences preferences = getSharedPreferences("data",MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("sharedPreferencesTest",MODE_PRIVATE);
                 String name = preferences.getString("name","");
                 String password = preferences.getString("password","");
                 //显示数据
@@ -55,7 +55,7 @@ public class SharedPreferencesActivity extends Activity {
             @Override
             public void onClick(View view) {
                 //清空数据
-                SharedPreferences.Editor editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences("sharedPreferencesTest",MODE_PRIVATE).edit();
                 editor.clear();
                 //提交操作
                 editor.commit();

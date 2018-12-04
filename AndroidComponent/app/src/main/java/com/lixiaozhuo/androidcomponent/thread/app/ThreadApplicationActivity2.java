@@ -13,7 +13,7 @@ import com.lixiaozhuo.androidcomponent.R;
  */
 public class ThreadApplicationActivity2 extends Activity {
     //标志
-    private String TAG = "AndroidApplication";
+    private String TAG = "App:Thread";
     //显示框
     private TextView tv;
     //输入框

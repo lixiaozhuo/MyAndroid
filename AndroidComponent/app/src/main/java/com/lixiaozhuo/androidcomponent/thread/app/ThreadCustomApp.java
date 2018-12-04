@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class ThreadCustomApp extends Application {
     //标志
-    private String TAG = "AndroidApplication:";
+    private String TAG = "App:ThreadApp";
     //
     private String textData = "default";
 

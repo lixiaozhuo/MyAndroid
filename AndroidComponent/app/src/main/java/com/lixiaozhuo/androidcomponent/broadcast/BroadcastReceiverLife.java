@@ -7,11 +7,12 @@ import android.util.Log;
 
 //广播接收器
 public class BroadcastReceiverLife extends BroadcastReceiver {
+    private final static String TAG = "App:Broadcast";
     @Override
     public void onReceive(Context context, Intent intent) {
         String Intent_Action = intent.getAction();
         if("com.lixiaozhuo.androidcomponent.broadcast.BroadcastLife".equals(Intent_Action)){
-            Log.e("AndroidApplication","onReceive");
+            Log.e(TAG,"onReceive");
         }
     }
 }

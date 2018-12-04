@@ -18,6 +18,7 @@ import com.lixiaozhuo.androidcomponent.content_provider.user.ContentProvider_Use
  * 数据提供活动
  */
 public class ContentProvider_ProviderActivity extends Activity {
+    private final static String TAG = "App:ContentProvide-Provide";
     //数据库帮助器
     private ContentProvider_ProviderHelper dbHelper;
 
@@ -26,16 +27,8 @@ public class ContentProvider_ProviderActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_provider_provider);
         //实例化帮助器
-        dbHelper = new ContentProvider_ProviderHelper(this, "BookStore.db", null, 2);
+        dbHelper = new ContentProvider_ProviderHelper(this, "ContentProvide.db", null, 1);
         //获取控件并绑定事件
-        //创建数据库
-        Button createDatabase = findViewById(R.id.create_database);
-        createDatabase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbHelper.getWritableDatabase();
-            }
-        });
         //添加数据
         Button addData = findViewById(R.id.add_data);
         addData.setOnClickListener(new View.OnClickListener() {
@@ -64,21 +57,6 @@ public class ContentProvider_ProviderActivity extends Activity {
                 Toast.makeText(ContentProvider_ProviderActivity.this, "添加数据成功", Toast.LENGTH_SHORT).show();
             }
         });
-        //更新数据库
-        Button updateData = findViewById(R.id.update_data);
-        updateData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //获取数据库
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                //存储数据
-                ContentValues values = new ContentValues();
-                values.put("price", 10.99);
-                //更新数据库
-                db.update("Book", values, "name = ?", new String[] { "Java编程思想" });
-                Toast.makeText(ContentProvider_ProviderActivity.this, "更新数据成功", Toast.LENGTH_SHORT).show();
-            }
-        });
         //删除数据库
         Button deleteButton = findViewById(R.id.delete_data);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +65,7 @@ public class ContentProvider_ProviderActivity extends Activity {
                 //获取数据库
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 //删除数据库
-                db.delete("Book", "pages > ?", new String[] { "500" });
+                db.delete("Book", null, null);
                 Toast.makeText(ContentProvider_ProviderActivity.this, "删除数据成功", Toast.LENGTH_SHORT).show();
             }
         });
@@ -108,7 +86,7 @@ public class ContentProvider_ProviderActivity extends Activity {
                         int pages = cursor.getInt(cursor.getColumnIndex("pages"));
                         double price = cursor.getDouble(cursor.getColumnIndex("price"));
                         //显示数据
-                        Log.e("AndroidApplication", "[Name = " + name+",Author = " + author+",Pages = " + pages+",Price = " + price + "]");
+                        Log.e(TAG, "[Name = " + name+",Author = " + author+",Pages = " + pages+",Price = " + price + "]");
                     } while (cursor.moveToNext());
                 }
                 cursor.close();

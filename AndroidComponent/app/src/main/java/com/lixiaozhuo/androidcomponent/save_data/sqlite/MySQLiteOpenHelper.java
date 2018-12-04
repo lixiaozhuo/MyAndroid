@@ -9,6 +9,7 @@ import android.util.Log;
  *自定义帮助器(管理数据库的创建和版本的管理)
  */
 public class MySQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper {
+    private final static String TAG = "App:SQLite";
     /**
      *
      * @param context 上下文
@@ -22,7 +23,7 @@ public class MySQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper
     //创建数据库
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.e("AndroidApplication", "数据库创建成功");
+        Log.e(TAG, "数据库创建成功");
         //新建学生表
         db.execSQL("CREATE TABLE student(_id INTEGER PRIMARY KEY AUTOINCREMENT, name CHAR(10), age INTEGER, sno INTEGER, cpp FLOAT, math FLOAT, english FLOAT)");
     }
@@ -30,6 +31,6 @@ public class MySQLiteOpenHelper extends android.database.sqlite.SQLiteOpenHelper
     //升级数据库
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.e("AndroidApplication", "数据库升级成功");
+        Log.e(TAG, "数据库升级成功");
     }
 }
