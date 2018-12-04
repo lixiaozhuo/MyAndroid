@@ -35,7 +35,7 @@ public class WebViewJavaScriptActivity extends Activity {
         //设置启动js
         webView.getSettings().setJavaScriptEnabled(true);
         // 从assets目录下面的加载html
-        webView.loadUrl("file:///android_asset/web.html");
+        webView.loadUrl("file:///android_asset/WebViewJSTest.html");
         //添加js接口
         webView.addJavascriptInterface(WebViewJavaScriptActivity.this, "android");
 

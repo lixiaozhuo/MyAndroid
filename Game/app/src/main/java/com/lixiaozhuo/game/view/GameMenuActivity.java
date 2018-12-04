@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.service.MusicService;
+import com.lixiaozhuo.game.thread.WeatherThread;
 
 /**
  * 游戏初始菜单
@@ -20,6 +22,8 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_menu);
+        //运行加载天气线程
+        new WeatherThread((TextView) findViewById(R.id.showWeather)).start();
         //获取控件并绑定事件
         findViewById(R.id.btnPlay).setOnClickListener(this);
         findViewById(R.id.btnRecord).setOnClickListener(this);

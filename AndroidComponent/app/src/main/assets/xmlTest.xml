@@ -1,0 +1,22 @@
+<apps>
+    <app>
+        <id>001</id>
+        <name>JAVA</name>
+        <version>2.0</version>
+    </app>
+
+    <app>
+        <id>002</id>
+        <name>编程思想</name>
+        <version>2.0</version>
+    </app>
+
+    <app>
+        <id>003</id>
+        <name>高并发</name>
+        <version>2.0</version>
+    </app>
+
+</apps>
+
+

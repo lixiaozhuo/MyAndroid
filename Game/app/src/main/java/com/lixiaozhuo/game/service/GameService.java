@@ -19,12 +19,12 @@ public class GameService {
     //踏板业务
     private GamePedalService gamePedalService;
     //界面布局业务
-    private LayoutService layoutService;
+    private GameLayoutService layoutService;
 
     public GameService(Context context, RelativeLayout layout) {
         gameMenService = new GameMenService(context);
         gamePedalService = new GamePedalService(context);
-        layoutService = new LayoutService(layout);
+        layoutService = new GameLayoutService(layout);
     }
 
     /**

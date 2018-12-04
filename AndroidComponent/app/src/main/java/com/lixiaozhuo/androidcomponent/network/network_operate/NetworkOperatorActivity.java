@@ -134,7 +134,7 @@ public class NetworkOperatorActivity extends Activity implements View.OnClickLis
         BufferedWriter writer = null;
         try {
             //将字符串保存到文件中
-            out = openFileOutput("data", Context.MODE_PRIVATE);
+            out = openFileOutput("networkData", Context.MODE_PRIVATE);
             writer = new BufferedWriter(new OutputStreamWriter(out));
             writer.write(inputText);
         } catch (IOException e) {

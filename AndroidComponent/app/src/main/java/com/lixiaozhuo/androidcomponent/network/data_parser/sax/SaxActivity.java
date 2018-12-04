@@ -1,14 +1,10 @@
 package com.lixiaozhuo.androidcomponent.network.data_parser.sax;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.res.AssetManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,16 +17,12 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -79,7 +71,7 @@ public class SaxActivity extends Activity implements View.OnClickListener{
                 HttpURLConnection connection = null;
                 BufferedReader reader = null;
                 try {
-                    URL url = new URL("https://hbu.github.io/data.xml");
+                    URL url = new URL("https://hbu.github.io/xmlTest.xml");
                     connection = (HttpURLConnection) url.openConnection();
                     //设置请求所用的方法
                     connection.setRequestMethod("GET");
@@ -142,7 +134,7 @@ public class SaxActivity extends Activity implements View.OnClickListener{
             //获取asset管理器
             AssetManager assetManager = getAssets();
             //将asset文件转换为文件流
-            InputStream inputStream = assetManager.open("data.xml");
+            InputStream inputStream = assetManager.open("xmlTest.xml");
             //解析文件流
             saxParser.parse(inputStream,new ContentHandler());
         }

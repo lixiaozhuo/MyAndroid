@@ -116,7 +116,8 @@ public class JsonActivity extends Activity implements View.OnClickListener {
                 HttpURLConnection connection = null;
                 BufferedReader reader = null;
                 try {
-                    URL url = new URL("https://e0d980a0-9406-4d96-b8af-8a3375049db0.coding.io/conn.php");
+                    URL url = new URL("https://api.seniverse.com/v3/weather/now.json" +
+                            "?key=wpjt7mayjnio3gq9&location=beijing&language=zh-Hans&unit=c");
                     connection = (HttpURLConnection) url.openConnection();
                     //设置请求所用的方法
                     connection.setRequestMethod("GET");
@@ -156,16 +157,13 @@ public class JsonActivity extends Activity implements View.OnClickListener {
     //解析请求
     private void parseRequest() {
         try {
-            JSONArray jsonArray = new JSONArray(responseText.getText().toString());
-            String result = "";
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String id = jsonObject.getString("id");
-                String name = jsonObject.getString("psw");
-
-                result += "[id = " + id + ",name = " + name + "]\n";
-                showResponse(result);
-            }
+            JSONObject jsonObject = new JSONObject(responseText.getText().toString());
+            JSONArray jsonArray = jsonObject.getJSONArray("results");
+            JSONObject data = jsonArray.getJSONObject(0);
+            JSONObject now = data.getJSONObject("now");
+            String text = now .getString("text");
+            String temperature = now.getString("temperature");
+            showResponse(text+" " + temperature + "℃");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -173,7 +171,7 @@ public class JsonActivity extends Activity implements View.OnClickListener {
 
     //显示数据
     private void showResponse(final String response) {
-        runOnUiThread(new Runnable() {
+         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 responseText.setText(response);

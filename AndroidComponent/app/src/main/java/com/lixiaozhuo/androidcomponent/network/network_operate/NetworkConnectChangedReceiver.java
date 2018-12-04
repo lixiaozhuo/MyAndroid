@@ -87,7 +87,6 @@ public class NetworkConnectChangedReceiver extends BroadcastReceiver {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             //获取网络连接管理器
             ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            Log.e(TAG2, "CONNECTIVITY_ACTION");
             networkState = "\n您的手机当前网络状态是：\n\n";
             NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
             if (activeNetwork != null) {

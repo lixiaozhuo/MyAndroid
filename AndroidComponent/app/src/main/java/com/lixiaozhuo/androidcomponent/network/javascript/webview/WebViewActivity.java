@@ -20,10 +20,6 @@ import com.lixiaozhuo.androidcomponent.R;
 public class WebViewActivity extends Activity {
     //web视图
     private WebView mWebView;
-    //提示开始加载
-    private TextView beginLoading;
-    //结束加载提示
-    private TextView endLoading;
     //加载中提示
     private TextView loading;
     //网页标题
@@ -35,8 +31,6 @@ public class WebViewActivity extends Activity {
         setContentView(R.layout.webview);
         //初始化控件
         mWebView = findViewById(R.id.webView1);
-        beginLoading = findViewById(R.id.text_beginLoading);
-        endLoading = findViewById(R.id.text_endLoading);
         loading = findViewById(R.id.text_Loading);
         mTitle = findViewById(R.id.title);
 
@@ -72,7 +66,6 @@ public class WebViewActivity extends Activity {
              */
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {//设置
-                beginLoading.setText("开始加载!!!");
             }
 
             /**
@@ -82,7 +75,7 @@ public class WebViewActivity extends Activity {
              */
             @Override
             public void onPageFinished(WebView view, String url) {
-                endLoading.setText("结束加载!!!");
+
             }
         });
     }
@@ -121,7 +114,7 @@ public class WebViewActivity extends Activity {
      */
     public void loadLocal(View view) {
         try {
-            mWebView.loadUrl("file:///android_asset/test.html");
+            mWebView.loadUrl("file:///android_asset/WebViewTest.html");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -134,7 +127,7 @@ public class WebViewActivity extends Activity {
      */
     public void loadImage(View view) {
         try {
-            String data = "测试本地图文混排。这是APK中的图片:" + "<IMG src= file:///android_asset/icon.jpg>" + "图片路径：src= file:///android_asset/icon.jpg";
+            String data = "测试本地图文混排。这是APK中的图片:" + "<IMG src= file:///android_asset/WebViewTest.jpg>" + "图片路径：src= file:///android_asset/WebViewTest.jpg";
             //显示网页
             mWebView.loadDataWithBaseURL("about:blank", data, "text/html;charset=UTF-8", null, "");
         } catch (Exception ex) {

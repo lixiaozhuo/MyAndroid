@@ -14,11 +14,11 @@ import java.util.Locale;
 /**
  * 游戏布局业务
  */
-public class LayoutService {
+public class GameLayoutService {
     //布局
     private RelativeLayout layout;
 
-    public LayoutService(RelativeLayout layout) {
+    public GameLayoutService(RelativeLayout layout) {
         this.layout = layout;
     }
 
@@ -72,6 +72,4 @@ public class LayoutService {
         String score = new SimpleDateFormat("mm" + "分" + "ss" + "秒", Locale.getDefault()).format(new Date(Time));
         ((TextView) layout.findViewById(R.id.textCount)).setText(score);
     }
-
-
 }

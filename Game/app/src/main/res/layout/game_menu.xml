@@ -6,6 +6,13 @@
     android:background="@mipmap/menu_bg"
     android:clipToPadding="true"
     android:fitsSystemWindows="true">
+    <TextView
+        android:id="@+id/showWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
 
     <ImageButton
         android:id="@+id/btnPlay"
