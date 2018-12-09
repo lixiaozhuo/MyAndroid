@@ -1,5 +1,6 @@
 package com.lixiaozhuo.game.service;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -19,15 +20,17 @@ public class WeatherService {
     /**
      * 获取响应数据
      */
-    public String getResponse(){
+    public String getResponse(String city){
         //存储响应
         StringBuilder response = new StringBuilder();
         HttpURLConnection connection = null;
         BufferedReader reader = null;
         try {
             //天气数据url
-            URL url = new URL("https://api.seniverse.com/v3/weather/now.json" +
-                    "?key=wpjt7mayjnio3gq9&location=beijing&language=zh-Hans&unit=c");
+            // URL url = new URL("https://api.seniverse.com/v3/weather/now.json" +
+            // "?key=wpjt7mayjnio3gq9&location="+city+"&language=zh-Hans&unit=c");
+            URL url = new URL("https://restapi.amap.com/v3/weather/weatherInfo?" +
+                    "key=b6106ba9e02d1fcd913e705e5712209b&city="+city+"&extensions=base");
             connection = (HttpURLConnection) url.openConnection();
             //设置请求所用的方法
             connection.setRequestMethod("GET");
@@ -72,14 +75,15 @@ public class WeatherService {
         try{
             //解析数据
             JSONObject jsonObject = new JSONObject(response);
-            JSONArray jsonArray = jsonObject.getJSONArray("results");
-            JSONObject data = jsonArray.getJSONObject(0);
-            JSONObject now = data.getJSONObject("now");
+            JSONArray lives = jsonObject.getJSONArray("lives");
+            JSONObject data = lives.getJSONObject(0);
+            //城市
+            String city = data .getString("city");
             //天气状况
-            String text = now .getString("text");
+            String weather = data .getString("weather");
             //温度
-            String temperature = now.getString("temperature");
-            result = text+" " + temperature + "℃";
+            String temperature = data.getString("temperature");
+            result = city+ " " + weather+" " + temperature + "℃";
         }catch(Exception e){
             e.printStackTrace();
         }finally {
