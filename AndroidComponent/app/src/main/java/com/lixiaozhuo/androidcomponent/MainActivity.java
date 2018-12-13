@@ -2,21 +2,21 @@ package com.lixiaozhuo.androidcomponent;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.lixiaozhuo.androidcomponent.activity.Activity1;
-import com.lixiaozhuo.androidcomponent.broadcast.BroadcastActivity;
-import com.lixiaozhuo.androidcomponent.calculator.CalculatorActivity;
-import com.lixiaozhuo.androidcomponent.content_provider.ContentProviderActivity;
-import com.lixiaozhuo.androidcomponent.intent.IntentActivity1;
-import com.lixiaozhuo.androidcomponent.network.NetworkActivity;
+import com.lixiaozhuo.androidcomponent._01_application.ApplicationActivity1;
+import com.lixiaozhuo.androidcomponent._03_activity.Activity1;
+import com.lixiaozhuo.androidcomponent._04_broadcast.BroadcastActivity;
+import com.lixiaozhuo.androidcomponent._02_calculator.CalculatorActivity;
+import com.lixiaozhuo.androidcomponent._07_content_provider.ContentProviderActivity;
+import com.lixiaozhuo.androidcomponent._05_intent.IntentActivity1;
+import com.lixiaozhuo.androidcomponent._10_network.NetworkActivity;
 
-import com.lixiaozhuo.androidcomponent.save_data.SaveDataActivity;
-import com.lixiaozhuo.androidcomponent.service.ServiceActivity;
-import com.lixiaozhuo.androidcomponent.thread.ThreadActivity;
-import com.lixiaozhuo.androidcomponent.view.ViewActivity;
+import com.lixiaozhuo.androidcomponent._09_data.DataActivity;
+import com.lixiaozhuo.androidcomponent._06_service.ServiceActivity;
+import com.lixiaozhuo.androidcomponent._11_thread.ThreadActivity;
+import com.lixiaozhuo.androidcomponent._08_view.ViewActivity;
 
 /**
  * 主函数
@@ -28,6 +28,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    /**
+     *小应用
+     * @param v
+     */
+    public void applicationTest(View v){
+        Intent intent = new Intent(MainActivity.this,ApplicationActivity1.class);
+        startActivity(intent);
+    }
+
     /**
      * 计算器
      * @param v
@@ -95,7 +104,7 @@ public class MainActivity extends Activity {
      * @param v
      */
     public void saveDataTest(View v){
-        Intent intent = new Intent(MainActivity.this, SaveDataActivity.class);
+        Intent intent = new Intent(MainActivity.this, DataActivity.class);
         startActivity(intent);
     }
 

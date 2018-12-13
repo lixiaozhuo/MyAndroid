@@ -9,7 +9,7 @@
     <!--手机联系人-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
-        android:name=".thread.app.ThreadCustomApp"
+        android:name="._01_application.CustomApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,13 +23,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--============================Application===============================================-->
+        <activity android:name="._01_application.ApplicationActivity1"/>
+        <activity android:name="._01_application.ApplicationActivity2"/>
         <!--============================Calculator===============================================-->
-        <activity android:name=".calculator.CalculatorActivity"/>
-        <!--============================intent===============================================-->
-        <activity android:name=".intent.IntentActivity1"/>
-        <activity android:name=".intent.IntentActivity2"/>
+        <activity android:name="._02_calculator.CalculatorActivity"/>
+        <!--==============================Activity=============================================-->
+        <activity android:name="._03_activity.Activity1" />
+        <activity android:name="._03_activity.Activity2" />
         <activity
-            android:name=".intent.IntentActivity3"
+            android:name="._03_activity.Activity3"
+            android:theme="@android:style/Theme.Dialog" />
+        <!--=============================Broadcast==============================================-->
+        <activity android:name="._04_broadcast.BroadcastActivity" />
+        <receiver android:name="._04_broadcast.BroadcastReceiverLife">
+            <intent-filter >
+                <action android:name="com.lixiaozhuo.androidcomponent.broadcast.BroadcastLife"/>
+            </intent-filter>
+        </receiver>
+        <!--============================intent===============================================-->
+        <activity android:name="._05_intent.IntentActivity1"/>
+        <activity android:name="._05_intent.IntentActivity2"/>
+        <activity
+            android:name="._05_intent.IntentActivity3"
             android:label="隐式打开" >
             <intent-filter>
                 <action android:name="com.lixiaozhuo.androidcomponent.intent.ACTION_START" />
@@ -37,83 +53,63 @@
                 <category android:name="com.lixiaozhuo.androidcomponent.intent.MY_CATEGORY" />
             </intent-filter>
         </activity>
-        <activity android:name=".intent.IntentActivity4"/>
-        <activity android:name=".intent.IntentActivity5"/>
-        <!--=============================Fragment==============================================-->
-        <activity android:name=".view.fragment.FragmentActivity"/>
-        <!--Fragment2_1-->
-        <activity android:name=".view.fragment.fragment1.Fragment1Activity"/>
-        <!--Fragment2_2-->
-        <activity android:name=".view.fragment.fragment2.Fragment2Activity"/>
-        <!--Fragment3-->
-        <activity android:name=".view.fragment.fragment3.Fragment3Activity"/>
-        <!--==============================Activity=============================================-->
-        <activity android:name=".activity.Activity1" />
-        <activity android:name=".activity.Activity2" />
-        <activity
-            android:name=".activity.Activity3"
-            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name="._05_intent.IntentActivity4"/>
+        <activity android:name="._05_intent.IntentActivity5"/>
         <!--=============================Service==============================================-->
-        <activity android:name=".service.ServiceActivity"/>
+        <activity android:name="._06_service.ServiceActivity"/>
         <service
-            android:name=".service.MyService"
+            android:name="._06_service.MyService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".service.NativeMusicService"
+            android:name="._06_service.NativeMusicService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".service.RemoteMusicService"
+            android:name="._06_service.RemoteMusicService"
             android:enabled="true"
             android:exported="true"/>
-        <!--=============================Broadcast==============================================-->
-        <activity android:name=".broadcast.BroadcastActivity" />
-        <receiver android:name=".broadcast.BroadcastReceiverLife">
-            <intent-filter >
-                <action android:name="com.lixiaozhuo.androidcomponent.broadcast.BroadcastLife"/>
-            </intent-filter>
-        </receiver>
+
         <!--==============================ContentProvider=============================================-->
-        <activity android:name=".content_provider.ContentProviderActivity"/>
+        <activity android:name="._07_content_provider.ContentProviderActivity"/>
         <!--provider-->
-        <activity android:name=".content_provider.provider.ContentProvider_ProviderActivity"/>
+        <activity android:name="._07_content_provider.provider.ContentProvider_ProviderActivity"/>
         <provider
-            android:name=".content_provider.provider.ContentProvider_Provider"
+            android:name="._07_content_provider.provider.ContentProvider_Provider"
             android:authorities="com.lixiaozhuo.provider"
             android:enabled="true"
             android:exported="true" />
         <!--user-->
-        <activity android:name=".content_provider.user.ContentProvider_UserActivity"/>
+        <activity android:name="._07_content_provider.user.ContentProvider_UserActivity"/>
         <!--system-book-->
-        <activity android:name=".content_provider.system_book.ContentProvider_SystemBookActivity"/>
+        <activity android:name="._07_content_provider.system_book.ContentProvider_SystemBookActivity"/>
         <!--==========================View=================================================-->
-        <activity android:name=".view.ViewActivity"/>
+        <activity android:name="._08_view.ViewActivity"/>
         <!-- Login-->
-        <activity android:name=".view.login.LoginActivity"/>
+        <activity android:name="._08_view.login.LoginActivity"/>
         <!-- Menu-->
-        <activity android:name=".view.menu.MenuActivity"/>
+        <activity android:name="._08_view.menu.MenuActivity"/>
         <!-- Spinner-->
-        <activity android:name=".view.spinner.SpinnerActivity"/>
+        <activity android:name="._08_view.spinner.SpinnerActivity"/>
         <!-- Toast-->
-        <activity android:name=".view.toast.ToastActivity"/>
+        <activity android:name="._08_view.toast.ToastActivity"/>
         <!-- Dialog-->
-        <activity android:name=".view.dialog.DialogActivity"/>
-        <activity android:name=".view.dialog.RadiobuttonActivity"/>
+        <activity android:name="._08_view.dialog.DialogActivity"/>
+        <activity android:name="._08_view.dialog.RadiobuttonActivity"/>
         <!-- ListView-->
-        <activity android:name=".view.listview.ListViewActivity"/>
+        <activity android:name="._08_view.listview.ListViewActivity"/>
         <!-- Notification-->
-        <activity android:name=".view.notification.NotificationActivity"/>
-        <activity android:name=".view.notification.Notification_ImageActivity"/>
-        <service android:name=".view.notification.Notification_MediaService"/>
-        <service android:name=".view.notification.Notification_DownloadService"/>
+        <activity android:name="._08_view.notification.NotificationActivity"/>
+        <activity android:name="._08_view.notification.Notification_ImageActivity"/>
+        <service android:name="._08_view.notification.Notification_MediaService"/>
+        <service android:name="._08_view.notification.Notification_DownloadService"/>
         <!--RecyclerView-->
-        <activity android:name=".view.recyclerview.RecyclerViewActivity"/>
+        <activity android:name="._08_view.recyclerview.RecyclerViewActivity"/>
         <!--Tab-->
-        <activity android:name=".view.tab.TabActivity2"/>
-        <activity android:name=".view.tab.MyTabActivity"/>
+        <activity android:name="._08_view.tab.TabActivity2"/>
+        <activity android:name="._08_view.tab.MyTabActivity"/>
         <!--AppWidget-->
-        <receiver android:name=".view.appwidget.MyAppWidgetProvider">
+        <receiver android:name="._08_view.appwidget.MyAppWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action  android:name="com.lixiaozhuo.androidcomponent.view.appwidget.preview"/>
@@ -122,46 +118,49 @@
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
+        <!--Fragment-->
+        <activity android:name="._08_view.fragment.FragmentActivity"/>
+        <activity android:name="._08_view.fragment.fragment1.Fragment1Activity"/>
+        <activity android:name="._08_view.fragment.fragment2.Fragment2Activity"/>
+        <activity android:name="._08_view.fragment.fragment3.Fragment3Activity"/>
         <!--============================数据存储===============================================-->
-        <activity android:name=".save_data.SaveDataActivity"/>
+        <activity android:name="._09_data.DataActivity"/>
         <!-- SharedPreferences-->
-        <activity android:name=".save_data.shared_preferences.SharedPreferencesActivity"/>
+        <activity android:name="._09_data.shared_preferences.SharedPreferencesActivity"/>
         <!-- SQLite-->
-        <activity android:name=".save_data.sqlite.SQLiteActivity"/>
-        <activity android:name=".save_data.sqlite.SQLiteApplicationActivity"/>
+        <activity android:name="._09_data.sqlite.SQLiteActivity"/>
+        <activity android:name="._09_data.sqlite.SQLiteApplicationActivity"/>
         <!--file-->
-        <activity android:name=".save_data.file.FileActivity"/>
+        <activity android:name="._09_data.file.FileActivity"/>
         <!--============================Network===============================================-->
-        <activity android:name=".network.NetworkActivity"/>
+        <activity android:name="._10_network.NetworkActivity"/>
         <!--网络连接-->
-        <activity android:name=".network.network_operate.NetworkOperatorActivity"/>
+        <activity android:name="._10_network.network_operate.NetworkOperatorActivity"/>
         <!--数据解析-->
-        <activity android:name=".network.data_parser.DataParserActivity"/>
-        <activity android:name=".network.data_parser.json.JsonActivity"/>
-        <activity android:name=".network.data_parser.sax.SaxActivity"/>
-        <activity android:name=".network.data_parser.login.NetworkLoginActivity"/>
+        <activity android:name="._10_network.data_parser.DataParserActivity"/>
+        <activity android:name="._10_network.data_parser.json.JsonActivity"/>
+        <activity android:name="._10_network.data_parser.sax.SaxActivity"/>
+        <activity android:name="._10_network.data_parser.login.NetworkLoginActivity"/>
         <!--JavaScript-->
-        <activity android:name=".network.javascript.JavaScriptActivity"/>
-        <activity android:name=".network.javascript.webview.WebViewActivity"/>
-        <activity android:name=".network.javascript.webview_javascript.WebViewJavaScriptActivity"/>
-        <activity android:name=".network.javascript.webview_javascript.WebViewJavaScriptOpenActivity"/>
+        <activity android:name="._10_network.javascript.JavaScriptActivity"/>
+        <activity android:name="._10_network.javascript.webview.WebViewActivity"/>
+        <activity android:name="._10_network.javascript.webview_javascript.WebViewJavaScriptActivity"/>
+        <activity android:name="._10_network.javascript.webview_javascript.WebViewJavaScriptOpenActivity"/>
         <!--============================Thread===============================================-->
-        <activity android:name=".thread.ThreadActivity"/>
+        <activity android:name="._11_thread.ThreadActivity"/>
         <!--Handler-->
-        <activity android:name=".thread.handler.HandlerActivity"/>
-        <activity android:name=".thread.handler.handler1.Handler1Activity"/>
-        <activity android:name=".thread.handler.handler2.Handler2Activity"/>
-        <activity android:name=".thread.handler.handler3.Handler3Activity"/>
-        <activity android:name=".thread.handler.handler_app.HandlerApplicationActivity"/>
+        <activity android:name="._11_thread.handler.HandlerActivity"/>
+        <activity android:name="._11_thread.handler.handler1.Handler1Activity"/>
+        <activity android:name="._11_thread.handler.handler2.Handler2Activity"/>
+        <activity android:name="._11_thread.handler.handler_thread.HandlerThreadActivity"/>
+        <activity android:name="._11_thread.handler.handler_ui.HandlerUIActivity"/>
+        <activity android:name="._11_thread.handler.communication.CommunicationActivity"/>
         <!--AsyncTask-->
-        <activity android:name=".thread.asynctask.AsyncTaskActivity"/>
-        <activity android:name=".thread.asynctask.asynctask1.AsyncTask1Activity"/>
-        <activity android:name=".thread.asynctask.asynctask2.AsyncTask2Activity"/>
-        <activity android:name=".thread.asynctask.asynctask_app.AsyncTaskApplicationActivity"/>
-        <!--线程通信-->
-        <activity android:name=".thread.communication.CommunicationActivity"/>
-        <!--应用-->
-        <activity android:name=".thread.app.ThreadApplicationActivity1"/>
-        <activity android:name=".thread.app.ThreadApplicationActivity2"/>
+        <activity android:name="._11_thread.asynctask.AsyncTaskActivity"/>
+        <activity android:name="._11_thread.asynctask.asynctask1.AsyncTask1Activity"/>
+        <activity android:name="._11_thread.asynctask.asynctask2.AsyncTask2Activity"/>
+        <!--UI-->
+        <activity android:name="._11_thread.update_ui.UpdateUIActivity"/>
+
     </application>
 </manifest>

@@ -24,11 +24,12 @@ import java.util.Date;
  * 游戏线程操作
  */
 public class PlayThread extends Thread {
-
+    //游戏命令
     private final static int PEDAL_ADD = 1;
     private final static int PEDAL_MOVE = 2;
     private final static int UPDATE_TIME = 3;
 
+    //上下文
     private Context context;
     //游戏业务
     private GameService gameService;
