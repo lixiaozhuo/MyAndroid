@@ -2,6 +2,7 @@ package com.lixiaozhuo.game.service;
 
 import android.content.Context;
 
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.domain.GameMen;
 import com.lixiaozhuo.game.domain.GamePedal;
 
@@ -9,24 +10,25 @@ import com.lixiaozhuo.game.domain.GamePedal;
  * 游戏人物业务
  */
 public class GameMenService {
-    private Context context;
+    //屏幕高度
+    private int screenHeight;
+    //屏幕宽度
+    private int screenWidth;
 
-    public GameMenService(Context context) {
-        this.context = context;
+    public GameMenService() {
+        Context context = MyApplication.getContext();
+        screenHeight = context.getResources().getDisplayMetrics().heightPixels;
+        screenWidth = context.getResources().getDisplayMetrics().widthPixels;
     }
 
     public GameMen createMen(int menNO, int x, int speed) {
-        //屏幕高度
-        int screenHeight = context.getResources().getDisplayMetrics().heightPixels;
         //返回游戏人物
         return new GameMen(menNO,
                 x, screenHeight / 4,
-                speed, context);
+                speed);
     }
 
     public void moveMen(GameMen gameMen, int x) {
-        //屏幕宽度
-        int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
         //移动后位置
         int newMenX = gameMen.getX() + x;
         //移动后人物未超出界面
@@ -60,7 +62,6 @@ public class GameMenService {
      * 判断人物是否死亡
      */
     public boolean isMenDead(GameMen gameMen) {
-        int screenHeight = context.getResources().getDisplayMetrics().heightPixels;
         //人物是否死亡
         return gameMen.getY() >= screenHeight || gameMen.getY() <= 10;
     }

@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.IBinder;
 
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.components.NativeMusicService;
 
@@ -34,8 +35,8 @@ public class MusicService {
                 .build();
     }
 
-    public  MusicService(Context context){
-        this.context = context;
+    public  MusicService(){
+        this.context = MyApplication.getContext();
         songID= soundPool.load(context, R.raw.key_music,1);
     }
 

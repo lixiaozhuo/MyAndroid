@@ -33,13 +33,13 @@ public class GameRecordDialog extends Dialog {
         setContentView(R.layout.game_record);
         this.context = context;
         //音乐业务
-        musicService = new MusicService(context);
+        musicService = new MusicService();
         //游戏记录业务
-        gameRecordService = new GameRecordService(context);
+        gameRecordService = new GameRecordService();
         //初始化界面
         initView();
         //初始化数据适配器
-        adapter = new ArrayAdapter<String>(context, R.layout.game_record_adapter);
+        adapter = new ArrayAdapter<>(context, R.layout.game_record_adapter);
         //初始化数据
         initData();
 

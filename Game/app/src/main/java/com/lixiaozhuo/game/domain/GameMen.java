@@ -1,9 +1,9 @@
 package com.lixiaozhuo.game.domain;
 
-import android.content.Context;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.R;
 
 /**
@@ -21,13 +21,13 @@ public class GameMen {
     //人物图像
     private ImageView menImage;
 
-    public GameMen(int menNO, int x, int y, int speed, Context context) {
+    public GameMen(int menNO, int x, int y, int speed) {
         this.menNO = menNO;
         this.x = x;
         this.y = y;
         this.speed = speed;
         //实例化人物图片并设置其属性
-        this.menImage = new ImageView(context);
+        this.menImage = new ImageView(MyApplication.getContext());
         this.menImage.setImageResource(getMenImageID());
         this.menImage.setLayoutParams(new RelativeLayout.LayoutParams(100, 150));
         this.menImage.setScaleType(ImageView.ScaleType.FIT_XY);

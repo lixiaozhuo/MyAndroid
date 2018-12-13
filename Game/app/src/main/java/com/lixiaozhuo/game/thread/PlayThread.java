@@ -2,12 +2,12 @@ package com.lixiaozhuo.game.thread;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.RelativeLayout;
 
+import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.common.GameState;
 import com.lixiaozhuo.game.domain.Game;
 import com.lixiaozhuo.game.domain.GameScore;
@@ -30,7 +30,7 @@ public class PlayThread extends Thread {
     private final static int UPDATE_TIME = 3;
 
     //上下文
-    private Context context;
+    private Activity activity;
     //游戏业务
     private GameService gameService;
     //音乐服务
@@ -38,11 +38,11 @@ public class PlayThread extends Thread {
     //游戏信息
     private Game game;
 
-    public PlayThread(Context context, RelativeLayout layout) {
-        this.context = context;
-        gameService = new GameService(context, layout);
-        musicService = new MusicService(context);
-        game = new Game(new GameSettingService(context).getSetting());
+    public PlayThread(Activity activity) {
+        this.activity = activity;
+        gameService = new GameService((RelativeLayout) activity.findViewById(R.id.playGame));
+        musicService = new MusicService();
+        game = new Game(new GameSettingService().getSetting());
     }
 
     @Override
@@ -82,7 +82,7 @@ public class PlayThread extends Thread {
             }
             return false;
         }
-    }) ;
+    });
 
     //游戏线程
     private Thread gameThread = new Thread() {
@@ -91,10 +91,10 @@ public class PlayThread extends Thread {
             int count = 0;
             while (game.getGameState() != GameState.FINISH) {
                 //阻塞线程达到暂停的方法
-                while (game.getGameState() == GameState.PAUSE){
-                    try{
+                while (game.getGameState() == GameState.PAUSE) {
+                    try {
                         Thread.sleep(1);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -123,10 +123,10 @@ public class PlayThread extends Thread {
         public void run() {
             while (game.getGameState() != GameState.FINISH) {
                 //阻塞线程达到暂停的方法
-                while (game.getGameState() == GameState.PAUSE){
-                    try{
+                while (game.getGameState() == GameState.PAUSE) {
+                    try {
                         Thread.sleep(1);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -161,7 +161,7 @@ public class PlayThread extends Thread {
         game.setGameState(GameState.PAUSE);
         //暂停音乐
         musicService.stopGameMusic();
-        new AlertDialog.Builder(context).setTitle("暂停")
+        new AlertDialog.Builder(activity).setTitle("暂停")
                 .setMessage("暂停了游戏")
                 .setPositiveButton("返回主菜单", new DialogInterface.OnClickListener() {
                     @Override
@@ -190,9 +190,9 @@ public class PlayThread extends Thread {
         //获取成绩
         GameScore gameScore = new GameScore(game.getGameSetting().getLevelNO(), new Date(game.getTime()).getTime());
         //更新成绩
-        new GameRecordService(context).updateRecord(gameScore);
+        new GameRecordService().updateRecord(gameScore);
         //提示结束
-        new AlertDialog.Builder(context).setTitle("游戏结束 !")
+        new AlertDialog.Builder(activity).setTitle("游戏结束 !")
                 .setMessage("您的成绩为 : " + gameScore.getScore())
                 .setPositiveButton("返回主菜单", new DialogInterface.OnClickListener() {
                     //返回主菜单的操作
@@ -228,7 +228,7 @@ public class PlayThread extends Thread {
         //设置游戏状态为结束
         game.setGameState(GameState.FINISH);
         //关闭窗口
-        ((Activity) context).finish();
+        activity.finish();
     }
 
     /**
@@ -237,7 +237,7 @@ public class PlayThread extends Thread {
      * @param x 移动位置
      */
     public void moveGameMen(int x) {
-        new GameMenService(context).moveMen(game.getGameMen(), x);
+        new GameMenService().moveMen(game.getGameMen(), x);
     }
 
 

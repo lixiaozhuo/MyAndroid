@@ -1,7 +1,6 @@
 package com.lixiaozhuo.game.service;
 
-import android.content.Context;
-
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.dao.GameRecordSQLiteOpenHelper;
 import com.lixiaozhuo.game.domain.GameScore;
 
@@ -14,9 +13,9 @@ public class GameRecordService {
     //数据库帮助器
     private GameRecordSQLiteOpenHelper dbHelper;
 
-    public GameRecordService(Context context) {
+    public GameRecordService() {
         //初始化数据库帮助器
-        dbHelper = new GameRecordSQLiteOpenHelper(context);
+        dbHelper = new GameRecordSQLiteOpenHelper(MyApplication.getContext());
     }
 
     /**

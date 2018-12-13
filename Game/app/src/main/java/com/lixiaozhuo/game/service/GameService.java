@@ -1,6 +1,5 @@
 package com.lixiaozhuo.game.service;
 
-import android.content.Context;
 import android.widget.RelativeLayout;
 
 import com.lixiaozhuo.game.common.GameState;
@@ -21,9 +20,9 @@ public class GameService {
     //界面布局业务
     private GameLayoutService layoutService;
 
-    public GameService(Context context, RelativeLayout layout) {
-        gameMenService = new GameMenService(context);
-        gamePedalService = new GamePedalService(context);
+    public GameService(RelativeLayout layout) {
+        gameMenService = new GameMenService();
+        gamePedalService = new GamePedalService();
         layoutService = new GameLayoutService(layout);
     }
 

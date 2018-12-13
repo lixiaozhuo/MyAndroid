@@ -1,8 +1,8 @@
 package com.lixiaozhuo.game.domain;
 
-import android.content.Context;
 import android.widget.ImageView;
 
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.R;
 
 /**
@@ -18,13 +18,13 @@ public class GamePedal {
     //踏板图像
     private ImageView pedalImage;
 
-    public GamePedal(int length, int x, int y, int speed, Context context) {
+    public GamePedal(int length, int x, int y, int speed) {
         this.length = length;
         this.x = x;
         this.y = y;
         this.speed = speed;
         //设踏板的显示图像
-        pedalImage = new ImageView(context);
+        pedalImage = new ImageView(MyApplication.getContext());
         //设置图片源
         pedalImage.setImageResource(R.mipmap.pedal);
         //不按比例缩放图片

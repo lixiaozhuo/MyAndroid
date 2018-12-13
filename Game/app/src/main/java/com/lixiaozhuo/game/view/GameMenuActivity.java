@@ -9,12 +9,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.lixiaozhuo.game.R;
-import com.lixiaozhuo.game.service.LocationService;
 import com.lixiaozhuo.game.service.MusicService;
 import com.lixiaozhuo.game.thread.WeatherThread;
 
@@ -30,9 +28,9 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_menu);
         //判断是否获取权限,如果缺少权限则申请权限
-        if(getPermissions()){
+        if (getPermissions()) {
             //已拥有权限,运行加载天气线程
-            new WeatherThread((TextView) findViewById(R.id.showWeather),this).start();
+            new WeatherThread((TextView) findViewById(R.id.showWeather)).start();
         }
         //获取控件并绑定事件
         findViewById(R.id.btnPlay).setOnClickListener(this);
@@ -48,7 +46,7 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
             }
         });
         //音乐业务
-        musicService = new MusicService(this);
+        musicService = new MusicService();
     }
 
     @Override
@@ -76,19 +74,18 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
     }
 
 
-
     //获取权限
-    private boolean getPermissions(){
+    private boolean getPermissions() {
         //危险权限集合
-        String[] Permissions = new String []{Manifest.permission.ACCESS_COARSE_LOCATION,//网络定位
+        String[] Permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,//网络定位
                 Manifest.permission.ACCESS_FINE_LOCATION,//GPS定位
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,//向存储中写入数据
                 Manifest.permission.READ_PHONE_STATE,};//手机当前的状态
         //标志是否拥有权限
         boolean isHavePermission = true;
         //检查是否缺少权限
-        for (String permission: Permissions) {
-            if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
+        for (String permission : Permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
                 isHavePermission = false;
                 break;
             }
@@ -105,6 +102,6 @@ public class GameMenuActivity extends Activity implements View.OnClickListener {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //运行加载天气线程
-        new WeatherThread((TextView) findViewById(R.id.showWeather),this).start();
+        new WeatherThread((TextView) findViewById(R.id.showWeather)).start();
     }
 }

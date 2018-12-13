@@ -3,6 +3,7 @@ package com.lixiaozhuo.game.dao;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.domain.GameSetting;
 
@@ -15,8 +16,8 @@ public class GameSettingDAO {
     //上下文
     private Context context;
 
-    public GameSettingDAO(Context context) {
-        this.context = context;
+    public GameSettingDAO() {
+        this.context = MyApplication.getContext();
     }
 
     /**

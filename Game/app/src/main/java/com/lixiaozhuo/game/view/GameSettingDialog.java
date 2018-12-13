@@ -32,9 +32,9 @@ public class GameSettingDialog extends Dialog implements View.OnClickListener {
         setContentView(R.layout.game_setting);
         this.context = context;
         //游戏设置业务
-        gameSettingService = new GameSettingService(context);
+        gameSettingService = new GameSettingService();
         //音乐业务
-        musicService = new MusicService(context);
+        musicService = new MusicService();
         //初始化界面
         initView();
         //获取设置

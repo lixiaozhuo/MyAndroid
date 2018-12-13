@@ -1,7 +1,5 @@
 package com.lixiaozhuo.game.service;
 
-import android.content.Context;
-
 import com.lixiaozhuo.game.dao.GameSettingDAO;
 import com.lixiaozhuo.game.domain.GameSetting;
 
@@ -12,8 +10,8 @@ public class GameSettingService {
     //游戏设置DAO
     private GameSettingDAO gameSettingDAO;
 
-    public GameSettingService(Context context) {
-        gameSettingDAO = new GameSettingDAO(context);
+    public GameSettingService() {
+        gameSettingDAO = new GameSettingDAO();
     }
 
     /**

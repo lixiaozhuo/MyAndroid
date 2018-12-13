@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lixiaozhuo.game.R;
@@ -34,7 +33,7 @@ public class GamePlayActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.game_play);
         //音乐业务
-        musicService = new MusicService(this);
+        musicService = new MusicService();
         //初始化电池广播接收器
         broadcastReceiver = new BatteryBroadcastReceiver();
         //注册电池广播接收器
@@ -48,7 +47,7 @@ public class GamePlayActivity extends Activity {
         });
 
         //初始化游戏线程
-        playThread = new PlayThread(this, (RelativeLayout) findViewById(R.id.playGame));
+        playThread = new PlayThread(this);
         //开始游戏
         playThread.start();
 

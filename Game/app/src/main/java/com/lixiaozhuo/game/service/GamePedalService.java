@@ -3,6 +3,7 @@ package com.lixiaozhuo.game.service;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 
+import com.lixiaozhuo.game.MyApplication;
 import com.lixiaozhuo.game.R;
 import com.lixiaozhuo.game.domain.GamePedal;
 
@@ -12,16 +13,15 @@ import java.util.Random;
  * 踏板服务
  */
 public class GamePedalService {
-    private Context context;
+    public GamePedalService() {
 
-    public GamePedalService(Context context) {
-        this.context = context;
     }
 
     /**
      * 添加踏板
      */
-    public  GamePedal createPedal(int speed) {
+    public GamePedal createPedal(int speed) {
+        Context context = MyApplication.getContext();
         //屏幕高和宽
         int screenWidth = context.getResources().getDisplayMetrics().widthPixels;
         int screenHeight = context.getResources().getDisplayMetrics().heightPixels;
@@ -42,7 +42,7 @@ public class GamePedalService {
                 break;
             }
         }
-        return new GamePedal(length, x, screenHeight, speed, context);
+        return new GamePedal(length, x, screenHeight, speed);
     }
 
     /**

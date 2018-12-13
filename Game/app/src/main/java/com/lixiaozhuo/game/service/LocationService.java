@@ -1,13 +1,12 @@
 package com.lixiaozhuo.game.service;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.lixiaozhuo.game.common.CommonData;
+import com.lixiaozhuo.game.MyApplication;
 
 /**
  * 定位业务
@@ -15,11 +14,9 @@ import com.lixiaozhuo.game.common.CommonData;
 public class LocationService {
     //标志是否成功定位
     public static volatile Boolean isSuccess;
-    //上下文
-    private Context context;
 
-    public LocationService(Context context){
-        this.context = context;
+    public LocationService() {
+
     }
 
     /**
@@ -29,20 +26,20 @@ public class LocationService {
         //初始化标志
         isSuccess = null;
         //声明并初始化AMapLocationClient类对象
-        AMapLocationClient mLocationClient = new AMapLocationClient(context);
+        AMapLocationClient mLocationClient = new AMapLocationClient(MyApplication.getContext());
         //设置定位回调监听
         mLocationClient.setLocationListener(new AMapLocationListener() {
             @Override
             public void onLocationChanged(AMapLocation aMapLocation) {
                 if (aMapLocation != null) {
                     if (aMapLocation.getErrorCode() == 0) {
-                        //解析amapLocation获取相应内容。
-                        CommonData.ADCode = aMapLocation.getAdCode();
+                        //解析aMapLocation获取相应内容。
+                        MyApplication.ADCode = aMapLocation.getAdCode();
                         //更新标志
                         isSuccess = true;
-                    }else {
+                    } else {
                         //定位失败，通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
-                        Log.e("App-Game","location Error, ErrCode:"
+                        Log.e("App-Game", "location Error, ErrCode:"
                                 + aMapLocation.getErrorCode() + ", errInfo:"
                                 + aMapLocation.getErrorInfo());
                         //更新标志
