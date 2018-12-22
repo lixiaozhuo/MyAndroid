@@ -61,16 +61,16 @@ public class GameSetting {
                 addPedalInterval =60;
                 break;
             case R.id.radioLevel2:
-                moveSpeed =14;
-                addPedalInterval =50;
+                moveSpeed =15;
+                addPedalInterval =45;
                 break;
             case R.id.radioLevel3:
-                moveSpeed =16;
-                addPedalInterval =40;
+                moveSpeed =20;
+                addPedalInterval =35;
                 break;
             case R.id.radioLevel4:
-                moveSpeed =18;
-                addPedalInterval =30;
+                moveSpeed =25;
+                addPedalInterval =25;
                 break;
         }
     }

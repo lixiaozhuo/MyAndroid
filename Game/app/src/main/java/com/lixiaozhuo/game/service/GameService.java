@@ -60,6 +60,8 @@ public class GameService {
         //设置游戏人物和当前踏板
         game.setGameMen(gameMen);
         game.setCurrentPedal(gamePedal);
+        //清空移动计数
+        game.clearMoveCount();
     }
 
     /**

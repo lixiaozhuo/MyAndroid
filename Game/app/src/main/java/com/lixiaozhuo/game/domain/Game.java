@@ -1,5 +1,7 @@
 package com.lixiaozhuo.game.domain;
 
+import android.service.autofill.FillEventHistory;
+
 import com.lixiaozhuo.game.common.GameState;
 
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ public class Game {
     private GameMen gameMen;
     //当前踏板
     private GamePedal currentPedal;
+    //移动计数(移动一定次数后添加踏板)
+    private int moveCount;
 
 
     public Game(GameSetting gameSetting) {
@@ -67,5 +71,17 @@ public class Game {
         this.currentPedal = currentPedal;
     }
 
+
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    public void clearMoveCount() {
+        this.moveCount = 0;
+    }
+
+    public  void  addMoveCount(){
+        this.moveCount ++;
+    }
 
 }

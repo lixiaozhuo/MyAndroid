@@ -88,7 +88,7 @@ public class PlayThread extends Thread {
     private Thread gameThread = new Thread() {
         @Override
         public void run() {
-            int count = 0;
+           game.clearMoveCount();
             while (game.getGameState() != GameState.FINISH) {
                 //阻塞线程达到暂停的方法
                 while (game.getGameState() == GameState.PAUSE) {
@@ -104,12 +104,13 @@ public class PlayThread extends Thread {
                     //发送移动消息
                     handler.sendEmptyMessage(PEDAL_MOVE);
                     //固定次数后添加踏板
-                    if (count == game.getGameSetting().getAddPedalInterval()) {
+                    if (game.getMoveCount() == game.getGameSetting().getAddPedalInterval()) {
                         //发送添加消息
                         handler.sendEmptyMessage(PEDAL_ADD);
-                        count = 0;
+                        game.clearMoveCount();
+                    }else{
+                        game.addMoveCount();
                     }
-                    count++;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
