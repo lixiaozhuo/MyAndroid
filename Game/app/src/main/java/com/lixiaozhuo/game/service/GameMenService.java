@@ -75,18 +75,18 @@ public class GameMenService {
         int menY = gameMen.getY() + gameMen.getHeight();
         //人物处于此踏板水平位置上
         if (menX >= pedal.getX() && menX <= (pedal.getX() + pedal.getLength())) {
-            int pedalY = pedal.getY();
-            //条件1
-            //人物位置<=踏板位置<=人物位置 + 人物速度
-            // (踏板位置-人物速度<=人物位置<=踏板位置)
-            //条件2
-            //人物位置<=踏板位置+踏板速度<=人物位置+人物速度
-            // (踏板位置+踏板速度-人物速度<=人物位置<=踏板位置+踏板速度)
-            //综合
-            //踏板位置-人物速度<=人物位置<=踏板位置+踏板速度
-            if ((pedalY - gameMen.getSpeed()) <= menY && menY <= (pedalY + gameMen.getSpeed())) {
-                //当前踏板
-                return false;
+                    int pedalY = pedal.getY();
+                    //条件1
+                    //人物位置<=踏板位置<=人物位置 + 人物速度
+                    // (踏板位置-人物速度<=人物位置<=踏板位置)
+                    //条件2
+                    //人物位置<=踏板位置+踏板速度<=人物位置+人物速度
+                    // (踏板位置+踏板速度-人物速度<=人物位置<=踏板位置+踏板速度)
+                    //综合
+                    //踏板位置-人物速度<=人物位置<=踏板位置+踏板速度
+                    if ((pedalY - gameMen.getSpeed()) <= menY && menY <= (pedalY + gameMen.getSpeed())) {
+                        //当前踏板
+                        return false;
             }
         }
         return true;
